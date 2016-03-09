@@ -29,7 +29,7 @@ g.task('js', ['bower'], () => {
 });
 
 g.task('sass', ['bower'], () => {
-    return g.src('source/_scss/foundation-app.scss')
+    return g.src('source/_scss/foundation-all.scss')
         .pipe($.sass({
             includePaths: sassPaths
         }))
