@@ -29,3 +29,6 @@ public
 
 # Generated JS/CSS
 lib
+
+# Sublime Workspace
+*.sublime-workspace
