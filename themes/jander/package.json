@@ -1,0 +1,11 @@
+{
+  "name": "jander",
+  "private": true,
+  "dependencies": {
+    "bower": "^1.7.7",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-sass": "^2.2.0"
+  }
+}
