@@ -4,6 +4,7 @@
   "dependencies": {
     "foundation-sites": "^6.2.0",
     "jquery": "^2.2.1",
-    "motion-ui": "^1.2.2"
+    "motion-ui": "^1.2.2",
+    "jQuery-Flex-Vertical-Center": "https://github.com/PaulSpr/jQuery-Flex-Vertical-Center.git#^1.0.0"
   }
 }

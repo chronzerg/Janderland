@@ -1,29 +1,34 @@
-<div class="front-page-menu">
-  <div class="row" id="button3-wrapper">
-      <a class="button radius" id="button3">think</a>
-  </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <div class="row" id="button2-wrapper">
-        <a class="button radius" id="button2">code</a>
-      </div>
-      <div class="row" id="button1-wrapper">
-        <a class="button radius" id="button1">write</a>
-      </div>
-    </div>
-    <div class="small-6 columns" id="face-wrapper">
-      <img id="menu_face" src="assets/face/idle1.jpg">
-    </div>
-    <div class="small-3 columns">
-      <div class="row" id="button4-wrapper">
-        <a class="button radius" id="button4">draw</a>
-      </div>
-      <div class="row" id="button5-wrapper">
-        <a class="button radius" id="button5">play</a>
-      </div>
-    </div>
-  </div>
-</div>
+<div id="menu-wrapper">
+    <div id="menu">
+        <div class="row column" id="button3-wrapper">
+            <a class="button radius" id="button3">play</a>
+        </div>
+        <div class="row">
+            <div class="small-3 column">
+                <div class="row column" id="button2-wrapper">
+                    <a class="button radius" id="button2">write</a>
+                </div>
+                <!--
+                <div class="row column" id="button1-wrapper">
+                    <a class="button radius" id="button1"></a>
+                </div>
+                -->
+            </div>
 
-<%- partial('_partials/js') %>
-<%- js('js/index') %>
+            <div class="small-6 column" id="face-wrapper">
+                <img id="face" src="assets/face/idle1.jpg">
+            </div>
+
+            <div class="small-3 column">
+                <div class="row column" id="button4-wrapper">
+                    <a class="button radius" id="button4">code</a>
+                </div>
+                <!--
+                <div class="row column" id="button5-wrapper">
+                    <a class="button radius" id="button5"></a>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>

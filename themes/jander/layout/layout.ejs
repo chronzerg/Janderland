@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%- css('css/app.css') %>
-        <title><%= page.title %></title>
+        <%- partial('_partials/css') %>
+
+        <%  // Get page title
+            var title = ''
+            if (page.title) {
+                title = page.title+'|'
+            }
+            title += 'JanderLand'
+        %>
+        <title><%= title %></title>
     </head>
-    <body><%- body %></body>
+    <body>
+        <%- body %>
+        <%- partial('_partials/js') %>
+    </body>
 </html>

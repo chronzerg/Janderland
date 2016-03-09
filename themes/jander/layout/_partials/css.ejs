@@ -1,14 +1,10 @@
-<%- // Common JS files
-    js([
-        'js/lib/jquery.js',
-        'js/lib/foundation.js',
-        'js/lib/what-input.js',
-        'js/lib/jquery.flexverticalcenter.js',
-        'js/app.js'
+<%- // Common CSS Files
+    css([
+        'css/lib/foundation.css'
     ])
 %>
 <%-
-    // Load page specific JS files
+    // Load page specific CSS files
     (() => {
         var depPath;
 
@@ -25,14 +21,14 @@
         // returns true.
         .some((dep) => {
             if (dep.condition()) {
-                depPath = 'js/'+dep.filename;
+                depPath = 'css/'+dep.filename;
                 return true
             }
             return false
         })
 
         // Display a link to the depency.
-        if (depPath) return js(depPath)
+        if (depPath) return css(depPath)
         else         return ''
     })()
 %>
