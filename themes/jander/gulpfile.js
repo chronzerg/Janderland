@@ -1,44 +1,38 @@
 var g = require('gulp'),
     $ = require('gulp-load-plugins')(),
-    b = require('bower');
+    bowerFiles = require('main-bower-files')
 
 // Configuration
 // =============
 
-var jsFiles = [
-    'bower_components/foundation-sites/dist/foundation.js',
-    'bower_components/jquery/dist/jquery.js',
-    'bower_components/what-input/what-input.js',
-    'bower_components/jQuery-Flex-Vertical-Center/jquery.flexverticalcenter.js'
-];
-var sassPaths = [
-    'bower_components/foundation-sites/scss',
-    'bower_components/motion-ui/src'
-];
+var jsDstPath = 'source/js/lib',
+    sassDstPath = 'source/css/lib'
 
 // Tasks
 // =====
 
-g.task('bower', () => {
-    b.commands.install();   
-});
+g.task('js', () => {
+    return g.src(bowerFiles(/.*\.js/))
+        .pipe(g.dest(jsDstPath))
+})
 
-g.task('js', ['bower'], () => {
-    return g.src(jsFiles)
-        .pipe(g.dest('source/js/lib'));
-});
-
-g.task('sass', ['bower'], () => {
-    return g.src('source/_scss/foundation-all.scss')
+g.task('sass', () => {
+    return g.src('source/_scss/app.scss')
         .pipe($.sass({
-            includePaths: sassPaths
+            includePaths: 'bower_components/foundation-sites/scss'
         }))
         .on('error', $.sass.logError)
         .pipe($.autoprefixer({
             browsers: ['last 2 versions', 'ie >= 9']
         }))
         .pipe($.rename('foundation.css'))
-        .pipe(g.dest('source/css/lib'));
-});
+        .pipe(g.dest(sassDstPath))
+})
 
-g.task('default', ['js', 'sass']);
+g.task('clean', () => {
+    // TODO - Clean bower files too.
+    return g.src([jsDstPath, sassDstPath])
+    .pipe($.clean())
+})
+
+g.task('default', ['js', 'sass'])
