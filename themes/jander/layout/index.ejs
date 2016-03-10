@@ -8,11 +8,6 @@
                 <div class="row column" id="button2-wrapper">
                     <a class="button radius" id="button2">write</a>
                 </div>
-                <!--
-                <div class="row column" id="button1-wrapper">
-                    <a class="button radius" id="button1"></a>
-                </div>
-                -->
             </div>
 
             <div class="small-6 column" id="face-wrapper">
@@ -23,11 +18,6 @@
                 <div class="row column" id="button4-wrapper">
                     <a class="button radius" id="button4">code</a>
                 </div>
-                <!--
-                <div class="row column" id="button5-wrapper">
-                    <a class="button radius" id="button5"></a>
-                </div>
-                -->
             </div>
         </div>
     </div>
@@ -35,4 +25,13 @@
     <div id="arrow">
         <i class='fi-arrow-down'></i>
     </div>
+</div>
+
+<div id="recent-posts">
+    <h2>recently...</h2>
+    <%- 
+        partial('_partials/list_posts', {
+            posts: site.posts.limit(theme.recent_posts)
+        })
+    %>
 </div>

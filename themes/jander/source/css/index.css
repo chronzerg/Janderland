@@ -7,8 +7,8 @@
   text-align: right; }
 
 #button3-wrapper {
-  text-align: center;
-  max-height: 25vh; }
+  max-height: 25vh;
+  text-align: center; }
 
 #button4-wrapper, #button5-wrapper {
   text-align: left; }
@@ -19,9 +19,32 @@
 #face {
   max-height: 75vh; }
 
+/*
+@keyframes bounce {
+    from { transform: translateY(0);    }
+    to   { transform: translateY(-15px); }
+}
+*/
 #arrow {
   position: absolute;
   bottom: 0;
   right: 10px;
+  display: none;
   font-size: 3rem;
-  color: #2199e8; }
+  color: #2199e8;
+  /*
+    animation-name: bounce;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    */ }
+
+#recent-posts {
+  position: absolute;
+  top: 100vh;
+  width: 100%;
+  padding: 10px 10%; }
+
+#recent-posts > h2 {
+  margin-left: 1rem; }

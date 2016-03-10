@@ -49,39 +49,39 @@
 	// Returns a random number generator.
 	var createNumGen = function (min, max) {
 		return function () {
-			return min + ((max - min) * Math.random())
+			return min + ((max - min) * Math.random());
 		}
-	}
+	};
 
 	var swapImage = function (new_pic_path) {
-		$('#face').attr('src', new_pic_path)
-	}
+		$('#face').attr('src', new_pic_path);
+	};
 
 	// Starts the loop that displays the alternative images.
 	var startLoop = function () {
 		cooldownTimerId = setTimeout(function loop () {
 			var cool_time = getCooldown(),
 				disp_time = getDisplay(),
-				alt = altImages.get()
+				alt = altImages.get();
 
 			// swapImage out with alt pic
-			swapImage(alt)
+			swapImage(alt);
 
 			// Schedule picture to revert back
 			displayTimerId = setTimeout(function ()  {
-				swapImage(imagePaths.main)
+				swapImage(imagePaths.main);
 
 				// After picture has reverted, schedule the next time for it to run
-				cooldownTimerId = setTimeout(loop, cool_time)
+				cooldownTimerId = setTimeout(loop, cool_time);
 			}, disp_time)
-		}, getCooldown())
-	}
+		}, getCooldown());
+	};
 
 	// Stop the loop that displays the alternative images.
 	var stopLoop = function () {
-		clearTimeout(displayTimerId)
-		clearTimeout(cooldownTimerId)
-	}
+		clearTimeout(displayTimerId);
+		clearTimeout(cooldownTimerId);
+	};
 
 
 	// Initialize
@@ -90,23 +90,23 @@
 	var displayTimerId = -1,
 		cooldownTimerId = -1,
 		getCooldown = createNumGen(cooldownMin, cooldownMax),
-		getDisplay = createNumGen(displayMin, displayMax)
+		getDisplay = createNumGen(displayMin, displayMax);
 
 	// The weighted table used to choose an
 	// alt image.
 	var altImages = {
 		table: [],
 		get: function () {
-			var ticks = 1 / altImages.table.length
-			var i = Math.floor(Math.random() / ticks)
-			return altImages.table[i]
+			var ticks = 1 / altImages.table.length;
+			var i = Math.floor(Math.random() / ticks);
+			return altImages.table[i];
 		}
-	}
+	};
 
 	// Build the alt images table
 	imagePaths.alts.forEach((alt) => {
 		for (var i=0; i<alt.weight; i++) {
-			altImages.table.push(alt.path)
+			altImages.table.push(alt.path);
 		}
 	})
 
@@ -120,19 +120,33 @@
 	$(function () {
 		$('#button1, #button2, #button3, #button4, #button5')
 		.hover(function () { // mouseover
-			stopLoop()
-			var id = $(this).attr('id')
-			swapImage(imagePaths.buttons[id])
+			stopLoop();
+			var id = $(this).attr('id');
+			swapImage(imagePaths.buttons[id]);
 		},
 		function () { // mouseoff
-			swapImage(imagePaths.main)
-			startLoop()
+			swapImage(imagePaths.main);
+			startLoop();
 		})
 		.click(function () {
 			$('#button1, #button2, #button3, #button4, #button5')
-			.unbind('mouseenter mouseleave click')
-		})
+			.unbind('mouseenter mouseleave click');
+		});
 
 		$('#menu').flexVerticalCenter();
 	})
-})(jQuery)
+})(jQuery);
+
+
+// Arrow
+// =====
+
+(function ($) {
+	// Remove the arrow when the user scrolls down.
+	if ($(window).scrollTop() == 0) {
+		$('#arrow').show();
+		$(window).one('scroll', function () {
+			$('#arrow').fadeOut();
+		});
+	}
+})(jQuery);

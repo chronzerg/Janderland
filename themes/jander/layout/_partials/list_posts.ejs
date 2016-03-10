@@ -1,0 +1,17 @@
+<div class="callout">
+    <% posts.forEach(function (post, i) { %>
+
+        <div class="row">
+            <div class="column small-12 medium-5">
+                <strong><%- link_to(post.path, post.title) %></strong>
+            </div>
+            <div class="column small-12 medium-7">
+                <%- post.excerpt %>
+            </div>
+        </div>
+
+        <% if (i < (posts.length-1)) { %>
+            <hr>
+        <% } %>
+    <% }) %>
+</div>

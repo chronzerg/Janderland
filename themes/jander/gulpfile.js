@@ -7,26 +7,27 @@ var g = require('gulp'),
 // =============
 
 // External JS Libraries
-var jsLibs = bowerFiles(/.*\.js/)
+var jsLibs = bowerFiles(/.*\.js/);
 
 // Foundation Sass
-var foundSass = 'source/_scss/found.scss'
+var foundSass = 'source/_scss/found.scss',
+    foundSettings = 'source/_scss/_settings.scss';
 
 // Jander Sass
 var janderSass = [
     'source/_scss/index.scss'
-]
+];
 
 // Sass Includes
 var sassInc = [
     'bower_components/foundation-sites/scss'
-]
+];
 
-var iconFiles = 'bower_components/foundation-icon-fonts/foundation-icons.*'
+var iconFiles = 'bower_components/foundation-icon-fonts/foundation-icons.*';
 
 // Destinations
 var jsDst = 'source/js/lib',
-    cssDst = 'source/css'
+    cssDst = 'source/css';
 
 
 // JS Tasks
@@ -34,8 +35,8 @@ var jsDst = 'source/js/lib',
 
 g.task('js', () => {
     return g.src(jsLibs)
-        .pipe(g.dest(jsDst))
-})
+        .pipe(g.dest(jsDst));
+});
 
 
 // SASS Tasks
@@ -51,8 +52,8 @@ g.task('sass-foundation', () => {
             browsers: ['last 2 versions', 'ie >= 9']
         }))
         .pipe($.rename('foundation.css'))
-        .pipe(g.dest(cssDst))
-})
+        .pipe(g.dest(cssDst));
+});
 
 g.task('sass-jander', () => {
     return g.src(janderSass)
@@ -63,10 +64,10 @@ g.task('sass-jander', () => {
         .pipe($.autoprefixer({
             browsers: ['last 2 versions', 'ie >= 9']
         }))
-        .pipe(g.dest(cssDst))
-})
+        .pipe(g.dest(cssDst));
+});
 
-g.task('sass', ['sass-foundation', 'sass-jander'])
+g.task('sass', ['sass-foundation', 'sass-jander']);
 
 
 // Icon Tasks
@@ -74,8 +75,8 @@ g.task('sass', ['sass-foundation', 'sass-jander'])
 
 g.task('icons', () => {
     return g.src(iconFiles)
-        .pipe(g.dest(cssDst))
-})
+        .pipe(g.dest(cssDst));
+});
 
 
 // Clean Tasks
@@ -83,29 +84,29 @@ g.task('icons', () => {
 
 g.task('clean-js', () => {
     return g.src(jsDst)
-        .pipe($.clean())
-})
+        .pipe($.clean());
+});
 
 g.task('clean-css', () => {
     return g.src(cssDst)
-        .pipe($.clean())
-})
+        .pipe($.clean());
+});
 
-g.task('clean', ['clean-js', 'clean-css'])
+g.task('clean', ['clean-js', 'clean-css']);
 
 
 // Watch Tasks
 // ===========
 
 g.task('watch', ['default'], () => {
-    g.watch(jsLibs, ['js'])
-    g.watch(foundSass, ['sass-foundation'])
-    g.watch(janderSass, ['sass-jander'])
-    g.watch(iconFiles, ['icons'])
-})
+    g.watch(jsLibs, ['js']);
+    g.watch([foundSass, foundSettings], ['sass-foundation']);
+    g.watch(janderSass, ['sass-jander']);
+    g.watch(iconFiles, ['icons']);
+});
 
 
 // Default Task
 // ============
 
-g.task('default', ['js', 'sass', 'icons'])
+g.task('default', ['js', 'sass', 'icons']);
