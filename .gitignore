@@ -30,6 +30,7 @@ db.json
 
 # Generated JS/CSS
 lib
+css
 
 # Sublime Workspace
 *.sublime-workspace
