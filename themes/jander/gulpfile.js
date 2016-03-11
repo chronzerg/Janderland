@@ -10,12 +10,13 @@ var g = require('gulp'),
 var jsLibs = bowerFiles(/.*\.js/);
 
 // Foundation Sass
-var foundSass = 'source/_scss/found.scss',
-    foundSettings = 'source/_scss/_settings.scss';
+var foundSass = 'source/_scss/foundation-entry.scss',
+    foundSettings = 'source/_scss/foundation-settings.scss';
 
 // Jander Sass
 var janderSass = [
-    'source/_scss/index.scss'
+    'source/_scss/index.scss',
+    'source/_scss/jander.scss'
 ];
 
 // Sass Includes

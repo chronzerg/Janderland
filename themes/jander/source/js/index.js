@@ -25,11 +25,9 @@
 		// Button images are displayed when the mouse hovers over a
 		// button.
 		buttons: {
-			button1: 'assets/face/button1.jpg',
-			button2: 'assets/face/button2.jpg',
-			button3: 'assets/face/button3.jpg',
-			button4: 'assets/face/button4.jpg',
-			button5: 'assets/face/button5.jpg'
+			button1: 'assets/face/button2.jpg',
+			button2: 'assets/face/button3.jpg',
+			button3: 'assets/face/button4.jpg',
 		}
 	}
 
@@ -118,7 +116,7 @@
 
 	// Register mouse callbacks
 	$(function () {
-		$('#button1, #button2, #button3, #button4, #button5')
+		$('#button1, #button2, #button3')
 		.hover(function () { // mouseover
 			stopLoop();
 			var id = $(this).attr('id');
@@ -129,11 +127,9 @@
 			startLoop();
 		})
 		.click(function () {
-			$('#button1, #button2, #button3, #button4, #button5')
+			$('#button1, #button2, #button3')
 			.unbind('mouseenter mouseleave click');
 		});
-
-		$('#menu').flexVerticalCenter();
 	})
 })(jQuery);
 

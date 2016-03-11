@@ -8,11 +8,29 @@
             if (page.title) {
                 title = page.title+'|'
             }
-            title += 'JanderLand'
+            title += 'Janderland'
         %>
         <title><%= title %></title>
     </head>
     <body>
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <ul class="menu">
+                    <li><strong><%- link_to('', 'janderland') %></strong></li>
+                    <% if (!is_home()) { %>
+                    <li><a href='#'>write</a></li>
+                    <li><a href='#'>play</a></li>
+                    <li><a href='#'>code</a></li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li><input type="search" placeholder="search"></li>
+                    <li><button type="button" class="button">search</button></li>
+                </ul>
+            </div>
+        </div>
         <%- body %>
         <%- partial('_partials/js') %>
     </body>

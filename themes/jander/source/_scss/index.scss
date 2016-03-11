@@ -1,26 +1,23 @@
 @charset 'utf-8';
-@import 'settings';
+@import 'foundation-settings';
 
 
 // Menu
 // ====
 
 #menu-wrapper {
-    position: absolute;
-    height: 100vh;
     width: 100%;
 }
 
-#button1-wrapper, #button2-wrapper {
+#button1-wrapper {
     text-align: right;
 }
 
-#button3-wrapper {
-    max-height: 25vh;
+#button2-wrapper {
     text-align: center;
 }
 
-#button4-wrapper, #button5-wrapper {
+#button3-wrapper {
     text-align: left;
 }
 
@@ -29,36 +26,21 @@
 }
 
 #face {
-    max-height: 75vh;
+    max-height: 50vh;
 }
 
 
 // Arrow
 // =====
 
-/*
-@keyframes bounce {
-    from { transform: translateY(0);    }
-    to   { transform: translateY(-15px); }
-}
-*/
-
 #arrow {
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 10px;
     right:  10px;
     display: none;
 
     font-size: 3rem;
     color: map-get($foundation-palette, primary);
-
-    /*
-    animation-name: bounce;
-    animation-duration: 0.7s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    */
 }
 
 
@@ -66,9 +48,6 @@
 // ============
 
 #recent-posts {
-    position: absolute;
-    top: 100vh;
-
     width: 100%;
     padding: 10px 10%;
 }
