@@ -10,14 +10,11 @@ var g = require('gulp'),
 var jsLibs = bowerFiles(/.*\.js/);
 
 // Foundation Sass
-var foundSass = 'source/_scss/foundation-entry.scss',
-    foundSettings = 'source/_scss/foundation-settings.scss';
+var fndEntry = 'source/_scss/foundation-entry.scss',
+    fndSettings = 'source/_scss/foundation-settings.scss';
 
 // Jander Sass
-var janderSass = [
-    'source/_scss/index.scss',
-    'source/_scss/jander.scss'
-];
+var janderSass = 'source/_scss/jander.scss';
 
 // Sass Includes
 var sassInc = [
@@ -44,7 +41,7 @@ g.task('js', () => {
 // ==========
 
 g.task('sass-foundation', () => {
-    return g.src(foundSass)
+    return g.src(fndEntry)
         .pipe($.sass({
             includePaths: sassInc
         }))
@@ -101,7 +98,7 @@ g.task('clean', ['clean-js', 'clean-css']);
 
 g.task('watch', ['default'], () => {
     g.watch(jsLibs, ['js']);
-    g.watch([foundSass, foundSettings], ['sass-foundation']);
+    g.watch([fndEntry, fndSettings], ['sass-foundation']);
     g.watch(janderSass, ['sass-jander']);
     g.watch(iconFiles, ['icons']);
 });

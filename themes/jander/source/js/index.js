@@ -1,7 +1,7 @@
 // Menu
 // ====
 
-(function ($) {
+(function () {
 	// Configuration
 	// =============
 
@@ -131,18 +131,4 @@
 			.unbind('mouseenter mouseleave click');
 		});
 	})
-})(jQuery);
-
-
-// Arrow
-// =====
-
-(function ($) {
-	// Remove the arrow when the user scrolls down.
-	if ($(window).scrollTop() == 0) {
-		$('#arrow').show();
-		$(window).one('scroll', function () {
-			$('#arrow').fadeOut();
-		});
-	}
-})(jQuery);
+})();

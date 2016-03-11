@@ -3,25 +3,30 @@
     <head>
         <%- partial('_partials/css') %>
 
-        <%  // Get page title
+        <!--
+         Get Title
+        -->
+        <%
             var title = ''
             if (page.title) {
                 title = page.title+'|'
             }
-            title += 'Janderland'
+            title += 'janderland'
         %>
         <title><%= title %></title>
     </head>
     <body>
+        <!--
+         Top Bar
+        -->
+        <% if (!is_home()) { %>
         <div class="top-bar">
             <div class="top-bar-left">
                 <ul class="menu">
-                    <li><strong><%- link_to('', 'janderland') %></strong></li>
-                    <% if (!is_home()) { %>
-                    <li><a href='#'>write</a></li>
-                    <li><a href='#'>play</a></li>
-                    <li><a href='#'>code</a></li>
-                    <% } %>
+                    <li><%- link_to('', 'janderland') %></li>
+                    <li><a href='#'><i class="fi-pencil"></i></a></li>
+                    <li><a href='#'><i class="fi-music"></i></a></li>
+                    <li><a href='#'><i class="fi-laptop"></i></a></li>
                 </ul>
             </div>
             <div class="top-bar-right">
@@ -31,7 +36,16 @@
                 </ul>
             </div>
         </div>
+        <% } %>
+
+        <!--
+         Main Content
+        -->
         <%- body %>
+
+        <!--
+         JavaScript
+        -->
         <%- partial('_partials/js') %>
     </body>
 </html>
