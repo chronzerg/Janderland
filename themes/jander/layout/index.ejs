@@ -10,30 +10,23 @@
 -->
 <div>
     <div>
-        <div class="row column text-center">
-            <a class="button" id="button2"><i class="fi-music"></i></a>
+        <div class="row column text-center no-wrap">
+            <a class="button radius h3" id="button2"><i class="fi-music"></i></a>
         </div>
-        <div class="row">
-            <div class="small-3 column text-right">
-                <a class="button" id="button1"><i class="fi-pencil"></i></a>
-            </div>
-
-            <div class="small-6 column text-center">
-                <img id="face" src="assets/face/idle1.jpg">
-            </div>
-
-            <div class="small-3 column text-left">
-                <a class="button" id="button3"><i class="fi-laptop"></i></a>
-            </div>
+        <div class="row column text-center no-wrap">
+            <a class="button radius h3 align-top" id="button1"><i class="fi-pencil"></i></a>
+            <img class="align-top" id="face" src="assets/face/idle1.jpg">
+            <a class="button radius h3 align-top" id="button3"><i class="fi-laptop"></i></a>
         </div>
     </div>
 </div>
 
-<!-- 
- Recent Posts 
+<!--
+ Recent Posts
 -->
 <div class="content">
-    <%- 
+    <h3>recently...</h3>
+    <%-
         partial('_partials/list_posts', {
             posts: site.posts.limit(theme.recent_posts)
         })

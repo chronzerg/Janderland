@@ -9,7 +9,7 @@
 		// The default idling image
 		main: 'assets/face/idle1.jpg',
 
-		// Alternative images that are randomly chosen (with weights) and 
+		// Alternative images that are randomly chosen (with weights) and
 		// displayed for a couple seconds
 		alts: [
 			{
@@ -29,7 +29,7 @@
 			button2: 'assets/face/button3.jpg',
 			button3: 'assets/face/button4.jpg',
 		}
-	}
+	};
 
 		// The range of time between displaying
 		// alt images.
@@ -38,7 +38,7 @@
 
 		// The range of time an alt image is displayed.
 		displayMin = 500,
-		displayMax = 2000
+		displayMax = 2000;
 
 
 	// Functions

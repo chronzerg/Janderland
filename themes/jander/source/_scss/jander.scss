@@ -1,6 +1,14 @@
 @charset 'utf-8';
 @import 'foundation-settings';
 
+// Colors
+// ======
+
+$primary: map-get($foundation-palette, primary);
+
+
+// Layout
+// ======
 
 .top-bar {
     margin-bottom: 10px;
@@ -8,4 +16,54 @@
 
 .content {
     padding: 10px 10%;
+}
+
+
+// Index
+// =====
+
+$face-margin: 2rem;
+#face {
+    margin: $face-margin $face-margin 0;
+}
+
+
+// Linked Div
+// ==========
+
+a > div {
+    color: $body-font-color;
+}
+
+$post-hover: scale-color($primary, $lightness: 90%);
+a > div:hover {
+    background-color: $post-hover;
+    box-shadow: 0 0 0.1rem 0.5rem $post-hover;
+}
+
+
+// Modifiers
+// =========
+
+.radius {
+    border-radius: 0.7rem;
+}
+
+// Header Classes
+@each $size, $headers in $header-sizes {
+    @include breakpoint($size) {
+        @each $header, $font-size in $headers {
+            .#{$header} {
+                font-size: rem-calc($font-size);
+            }
+        }
+    }
+}
+
+.align-top {
+    vertical-align: top;
+}
+
+.no-wrap {
+    white-space: nowrap;
 }
