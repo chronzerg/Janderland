@@ -12,33 +12,37 @@ $primary: map-get($foundation-palette, primary);
 
 .top-bar {
     margin-bottom: 10px;
+
+    .title {
+        color: rgba($primary, 0.8);
+        font-weight: bold;
+        font-size: 1.5em;
+
+        &.big {
+            text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+            font-size: 4rem;
+        }
+    }
 }
 
 .content {
     padding: 10px 10%;
 }
 
-
-// Index
-// =====
-
-$face-margin: 2rem;
-#face {
-    margin: $face-margin $face-margin 0;
-}
-
-
 // Linked Div
 // ==========
 
-a > div {
-    color: $body-font-color;
-}
-
 $post-hover: scale-color($primary, $lightness: 90%);
-a > div:hover {
-    background-color: $post-hover;
-    box-shadow: 0 0 0.1rem 0.5rem $post-hover;
+
+a {
+    > div {
+        color: $body-font-color;
+    }
+
+    > div:hover {
+        background-color: $post-hover;
+        box-shadow: 0 0 0.1rem 0.5rem $post-hover;
+    }
 }
 
 
@@ -46,7 +50,7 @@ a > div:hover {
 // =========
 
 .radius {
-    border-radius: 0.7rem;
+    border-radius: 0.7rem !important;
 }
 
 // Header Classes
@@ -54,16 +58,24 @@ a > div:hover {
     @include breakpoint($size) {
         @each $header, $font-size in $headers {
             .#{$header} {
-                font-size: rem-calc($font-size);
+                font-size: rem-calc($font-size) !important;
             }
         }
     }
 }
 
+.a {
+    color: $primary !important;
+}
+
 .align-top {
-    vertical-align: top;
+    vertical-align: top !important;
+}
+
+.align-bottom {
+    vertical-align: bottom !important;
 }
 
 .no-wrap {
-    white-space: nowrap;
+    white-space: nowrap !important;
 }

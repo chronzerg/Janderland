@@ -48,7 +48,7 @@
 	var createNumGen = function (min, max) {
 		return function () {
 			return min + ((max - min) * Math.random());
-		}
+		};
 	};
 
 	var swapImage = function (new_pic_path) {
@@ -71,7 +71,7 @@
 
 				// After picture has reverted, schedule the next time for it to run
 				cooldownTimerId = setTimeout(loop, cool_time);
-			}, disp_time)
+			}, disp_time);
 		}, getCooldown());
 	};
 
@@ -102,17 +102,17 @@
 	};
 
 	// Build the alt images table
-	imagePaths.alts.forEach((alt) => {
+	imagePaths.alts.forEach(function (alt) {
 		for (var i=0; i<alt.weight; i++) {
 			altImages.table.push(alt.path);
 		}
-	})
+	});
 
 
 	// Attach to DOM
 	// =============
 
-	startLoop()
+	startLoop();
 
 	// Register mouse callbacks
 	$(function () {
@@ -130,5 +130,22 @@
 			$('#button1, #button2, #button3')
 			.unbind('mouseenter mouseleave click');
 		});
-	})
+	});
 })();
+
+
+// Responsiveness
+// ==============
+
+/*
+(function () {
+	resizeFace = function () {
+		var viewHeight = $(window).height(),
+			topbarHeight = $('#top-bar').outerHeight(true);
+		$('#menu-wrapper').height(viewHeight - topbarHeight);
+	};
+
+	resizeFace();
+	$(window).resize(_.throttle(resizeFace, 25));
+})();
+*/
