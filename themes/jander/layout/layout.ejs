@@ -11,6 +11,7 @@
             if (page.title) {
                 title = page.title+'|'
             }
+            // TODO - Use site title variable.
             title += 'janderland'
         %>
         <title><%= title %></title>
@@ -23,7 +24,7 @@
         <div class="top-bar">
             <div class="top-bar-left">
                 <ul class="menu">
-                    <li><%- link_to('', 'janderland', { class: 'title' }) %></li>
+                    <li><a href="<%= url_for('') %>"><h1>janderland</h1></a></li>
                     <li><a href='#'><i class="fi-pencil"></i></a></li>
                     <li><a href='#'><i class="fi-music"></i></a></li>
                     <li><a href='#'><i class="fi-laptop"></i></a></li>

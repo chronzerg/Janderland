@@ -1,8 +1,9 @@
 <!--
  Index Top Bar
 -->
-<div class="top-bar text-center" id="top-bar">
-    <h1 class="title big">janderland</h1>
+<div class="top-bar text-center index">
+    <!-- TODO: use site variable -->
+    <h1>janderland</h1>
 </div>
 
 <!--
@@ -10,12 +11,14 @@
 -->
 <div id="menu-wrapper">
     <div class="row column text-center no-wrap">
-        <a class="button radius h3 align-bottom" id="button2"><i class="fi-music"></i></a>
+        <ul class="menu expanded">
+            <li><a class="h1" id="button1"><i class="fi-pencil"></i></a></li>
+            <li><a class="h1" id="button2"><i class="fi-music"></i></a></li>
+            <li><a class="h1" id="button3"><i class="fi-laptop"></i></a></li>
+        </ul>
     </div>
-    <div class="row column text-center no-wrap">
-        <a class="button radius h3 align-top" id="button1"><i class="fi-pencil"></i></a>
+    <div class="row column text-center">
         <img class="align-top" id="face" src="assets/face/idle1.jpg">
-        <a class="button radius h3 align-top" id="button3"><i class="fi-laptop"></i></a>
     </div>
 </div>
 
@@ -23,7 +26,11 @@
  Recent Posts
 -->
 <div class="content">
-    <h3>recently...</h3>
+    <div class="callout header secondary">
+        <div class="row column">
+            New Stuff
+        </div>
+    </div>
     <%-
         partial('_partials/list_posts', {
             posts: site.posts.limit(theme.recent_posts)

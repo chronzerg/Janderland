@@ -132,20 +132,3 @@
 		});
 	});
 })();
-
-
-// Responsiveness
-// ==============
-
-/*
-(function () {
-	resizeFace = function () {
-		var viewHeight = $(window).height(),
-			topbarHeight = $('#top-bar').outerHeight(true);
-		$('#menu-wrapper').height(viewHeight - topbarHeight);
-	};
-
-	resizeFace();
-	$(window).resize(_.throttle(resizeFace, 25));
-})();
-*/
