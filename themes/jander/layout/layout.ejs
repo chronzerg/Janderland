@@ -2,30 +2,16 @@
 <html>
     <head>
         <%- partial('_partials/css') %>
-
-        <!--
-         Get Title
-        -->
-        <%
-            var title = ''
-            if (page.title) {
-                title = page.title+'|'
-            }
-            // TODO - Use site title variable.
-            title += 'janderland'
-        %>
-        <title><%= title %></title>
+        <title><%= page.title %></title>
     </head>
     <body>
-        <!--
-         Top Bar
-        -->
+        <!-- top bar -->
         <% if (!is_home()) { %>
         <div class="top-bar">
             <div class="top-bar-left">
                 <ul class="menu">
                     <li><a href="<%= url_for('') %>"><h1>janderland</h1></a></li>
-                    <li><a href='#'><i class="fi-pencil"></i></a></li>
+                    <li>{% write %}</li>
                     <li><a href='#'><i class="fi-music"></i></a></li>
                     <li><a href='#'><i class="fi-laptop"></i></a></li>
                 </ul>
@@ -39,14 +25,8 @@
         </div>
         <% } %>
 
-        <!--
-         Main Content
-        -->
         <%- body %>
 
-        <!--
-         JavaScript
-        -->
         <%- partial('_partials/js') %>
     </body>
 </html>

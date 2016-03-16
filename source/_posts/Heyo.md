@@ -1,7 +1,7 @@
 ---
 title: Heyo
 date: 2016-03-10 11:30:12
-tags:
+tags: write
 ---
 The article is here. And all we can say is Heyo!
 <!-- more -->
