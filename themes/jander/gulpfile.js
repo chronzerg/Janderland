@@ -1,15 +1,22 @@
 var g = require('gulp'),
     $ = require('gulp-load-plugins')(),
     bowerFiles = require('main-bower-files'),
-    _ = require('lodash');
+    stream2Array = require('stream-to-array'),
+    fs = require('hexo-fs'),
+    _ = require('lodash'),
+    p = require('path');
 
 
 // Configuration
 // =============
 
 var js = {
+    common:   'source/js/common/app.js',
     libaries: bowerFiles(/.*\.js/),
-    output:   'source/js/lib'
+    output: {
+        lib: 'source/js/lib',
+        ejs: 'layout/_generated/common_js.ejs'
+    }
 };
 
 var css = {
@@ -25,22 +32,14 @@ var css = {
     },
     output: {
         common:   'source/css/common',
-        specific: 'source/css'
+        specific: 'source/css',
+        ejs:      'layout/_generated/common_css.ejs'
     }
 };
 
 
-// JS Tasks
-// ========
-
-// Copy JavaScript libraries into the the output folder.
-g.task('js', () => {
-    return g.src(js.libaries).pipe(g.dest(js.output));
-});
-
-
-// SASS Tasks
-// ==========
+// Helpers
+// =======
 
 function compileSass (gulpSrc) {
     return gulpSrc
@@ -52,6 +51,40 @@ function compileSass (gulpSrc) {
             browsers: ['last 2 versions', 'ie >= 9']
         }));
 }
+
+function toFileList (gulpSrc) {
+    return stream2Array(gulpSrc)
+    .then((array) => {
+        return array.map((vinyl) => {
+            return p.relative('./source', vinyl.path)
+        }).map((path) => {
+            // make windows paths url friendly
+            return path.replace(/\\+/g, '/');
+        });
+    });
+}
+
+
+// JS Tasks
+// ========
+
+g.task('js-libraries', () => {
+    return g.src(js.libaries).pipe(g.dest(js.output.lib));
+});
+
+g.task('js-ejs', ['js-libraries'], () => {
+    return toFileList(g.src([js.output.lib + '/*.js', js.common]))
+    .then((files) => {
+        var data = '<%- js(' + JSON.stringify(files, null, 4) + ') %>';
+        return fs.writeFile(js.output.ejs, data);
+    });
+});
+
+g.task('js', ['js-libraries', 'js-ejs']);
+
+
+// CSS Tasks
+// ==========
 
 g.task('css-specific', () => {
     return compileSass(g.src(css.jander.specific))
@@ -73,14 +106,22 @@ g.task('css-icons', () => {
     return g.src(css.foundation.icons).pipe(g.dest(css.output.common));
 });
 
-g.task('css', ['css-specific', 'css-common', 'css-foundation', 'css-icons']);
+g.task('css-ejs', ['css-specific', 'css-common', 'css-foundation', 'css-icons'], () => {
+    return toFileList(g.src(css.output.common + '/*.css'))
+    .then((files) => {
+        var data = '<%- css(' + JSON.stringify(files, null, 4) + ') %>';
+        return fs.writeFile(css.output.ejs, data);
+    });
+});
+
+g.task('css', ['css-specific', 'css-common', 'css-foundation', 'css-icons', 'css-ejs']);
 
 
 // Clean Tasks
 // ===========
 
 g.task('clean-js', () => {
-    return g.src(js.output)
+    return g.src(_.toArray(js.output))
         .pipe($.clean());
 });
 

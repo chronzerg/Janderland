@@ -2,6 +2,7 @@
   "name": "jander",
   "private": true,
   "dependencies": {
+    "bluebird": "^3.3.4",
     "bower": "^1.7.7",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
@@ -10,6 +11,8 @@
     "gulp-load-plugins": "^1.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
-    "main-bower-files": "^2.11.1"
+    "main-bower-files": "^2.11.1",
+    "stream-to-array": "^2.3.0",
+    "through2": "^2.0.1"
   }
 }

@@ -28,9 +28,7 @@ bower_components
 public
 db.json
 
-# Generated JS/CSS
-lib
+# Generated Files
+js/lib
 css
-
-# Sublime Workspace
-*.sublime-workspace
+_generated
