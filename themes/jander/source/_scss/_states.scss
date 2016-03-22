@@ -1,0 +1,32 @@
+@import 'colors';
+
+.radius {
+    border-radius: 0.7rem !important;
+}
+
+// Header Classes
+@each $size, $headers in $header-sizes {
+    @include breakpoint($size) {
+        @each $header, $font-size in $headers {
+            .#{$header} {
+                font-size: rem-calc($font-size) !important;
+            }
+        }
+    }
+}
+
+.a {
+    color: $primary !important;
+}
+
+.align-top {
+    vertical-align: top !important;
+}
+
+.align-bottom {
+    vertical-align: bottom !important;
+}
+
+.no-wrap {
+    white-space: nowrap !important;
+}
