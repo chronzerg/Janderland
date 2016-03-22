@@ -1,0 +1,23 @@
+@import 'colors';
+
+#top-bar {
+    @extend .top-bar;
+    margin-bottom: 10px;
+
+    &.l-home {
+        text-align: center;
+    }
+}
+
+#title {
+    color: $primary;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 0;
+
+    .l-home & {
+        color: rgba($primary, 0.8);
+        text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+        font-size: 4rem;
+    }
+}

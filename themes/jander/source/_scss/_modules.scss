@@ -1,29 +1,8 @@
 @import 'colors';
 
-.top-bar {
-    margin-bottom: 10px;
-
-    h1 {
-        color: $primary;
-        font-weight: bold;
-        font-size: 1.5em;
-        margin-bottom: 0;
-    }
-}
-
-.callout.header {
+.callout-header {
+    @extend .callout;
     margin-bottom: 0;
     font-weight: bold;
     border-bottom-width: 0;
-}
-
-// Home
-.index.top-bar h1 {
-    color: rgba($primary, 0.8);
-    text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
-    font-size: 4rem;
-}
-
-.content {
-    padding: 10px 10%;
 }

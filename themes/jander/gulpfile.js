@@ -44,9 +44,6 @@ g.task('css-sass', () => {
 
 g.task('css-icons', () => {
     return g.src(css.icons)
-        .pipe($.rename((path) => {
-            path.basename = 'icons';
-        }))
         .pipe(g.dest(css.output));
 });
 
