@@ -26,14 +26,19 @@ var css = {
 // ==========
 
 g.task('css-sass', () => {
+    var sass = $.sass({
+        includePaths: css.includes 
+    }).on('error', $.sass.logError);
+
+    var autoprefixer = $.autoprefixer({
+        browsers: ['last 2 versions', 'ie >= 9']
+    });
+
     return g.src(css.inputFolder + '/' + css.inputFile)
-        .pipe($.sass({
-            includePaths: css.includes
-        }))
-        .on('error', $.sass.logError)
-        .pipe($.autoprefixer({
-            browsers: ['last 2 versions', 'ie >= 9']
-        }))
+        .pipe($.sourcemaps.init())
+        .pipe(sass)
+        .pipe(autoprefixer)
+        .pipe($.sourcemaps.write())
         .pipe(g.dest(css.output));
 });
 
