@@ -20,10 +20,10 @@ var js = {
 };
 
 var css = {
-    input: '_scss/app.scss',
+    input: 'source/_scss/app.scss',
     icons: 'bower_components/foundation-icon-fonts/foundation-icons.*',
     includes: 'bower_components/foundation-sites/scss',
-    output: 'source'
+    output: 'source/css'
 };
 
 
@@ -77,7 +77,7 @@ g.task('css-app', () => {
 });
 
 g.task('css-icons', () => {
-    return g.src(css.foundation.icons).pipe(g.dest(css.output.common));
+    return g.src(css.icons).pipe(g.dest(css.output));
 });
 
 g.task('css', ['css-app', 'css-icons']);
@@ -92,7 +92,7 @@ g.task('clean-js', () => {
 });
 
 g.task('clean-css', () => {
-    return g.src(css.output + '/app.css')
+    return g.src(css.output)
         .pipe($.clean());
 });
 
