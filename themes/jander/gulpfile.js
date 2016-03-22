@@ -1,71 +1,32 @@
 var g = require('gulp'),
     $ = require('gulp-load-plugins')(),
-    bowerFiles = require('main-bower-files'),
-    stream2Array = require('stream-to-array'),
-    fs = require('hexo-fs'),
-    _ = require('lodash'),
-    p = require('path');
+    bowerFiles = require('main-bower-files');
 
 
 // Configuration
 // =============
 
 var js = {
-    common:   'source/js/common/app.js',
-    libaries: bowerFiles(/.*\.js/),
-    output: {
-        lib: 'source/js/lib',
-        ejs: 'layout/_generated/common_js.ejs'
-    }
+    libaries: bowerFiles(/.*\.js/)
 };
 
 var css = {
-    input: 'source/_scss/app.scss',
-    icons: 'bower_components/foundation-icon-fonts/foundation-icons.*',
-    includes: 'bower_components/foundation-sites/scss',
+    inputFolder: 'source/_scss',
+    inputFile: 'app.scss',
+    includes: [
+        'bower_components/foundation-sites/scss',
+        'bower_components/foundation-icon-fonts'
+    ],
+    icons: 'bower_components/foundation-icon-fonts/foundation-icons.!(css)',
     output: 'source/css'
 };
-
-
-// Helpers
-// =======
-
-function toFileList (gulpSrc) {
-    return stream2Array(gulpSrc)
-    .then((array) => {
-        return array.map((vinyl) => {
-            return p.relative('./source', vinyl.path)
-        }).map((path) => {
-            // make windows paths url friendly
-            return path.replace(/\\+/g, '/');
-        });
-    });
-}
-
-
-// JS Tasks
-// ========
-
-g.task('js-libraries', () => {
-    return g.src(js.libaries).pipe(g.dest(js.output.lib));
-});
-
-g.task('js-ejs', ['js-libraries'], () => {
-    return toFileList(g.src([js.output.lib + '/*.js', js.common]))
-    .then((files) => {
-        var data = '<%- js(' + JSON.stringify(files, null, 4) + ') %>';
-        return fs.writeFile(js.output.ejs, data);
-    });
-});
-
-g.task('js', ['js-libraries', 'js-ejs']);
 
 
 // CSS Tasks
 // ==========
 
-g.task('css-app', () => {
-    return g.src(css.input)
+g.task('css-sass', () => {
+    return g.src(css.inputFolder + '/' + css.inputFile)
         .pipe($.sass({
             includePaths: css.includes
         }))
@@ -77,47 +38,35 @@ g.task('css-app', () => {
 });
 
 g.task('css-icons', () => {
-    return g.src(css.icons).pipe(g.dest(css.output));
+    return g.src(css.icons)
+        .pipe($.rename((path) => {
+            path.basename = 'icons';
+        }))
+        .pipe(g.dest(css.output));
 });
 
-g.task('css', ['css-app', 'css-icons']);
+g.task('css', ['css-sass', 'css-icons']);
 
 
 // Clean Tasks
 // ===========
 
-g.task('clean-js', () => {
-    return g.src(_.toArray(js.output))
-        .pipe($.clean());
-});
-
 g.task('clean-css', () => {
-    return g.src(css.output)
-        .pipe($.clean());
+    return g.src(css.output).pipe($.clean());
 });
 
-g.task('clean', ['clean-js', 'clean-css']);
+g.task('clean', ['clean-css']);
 
 
 // Watch Tasks
 // ===========
 
 g.task('watch', ['default'], () => {
-    g.watch([
-            css.foundation.settings,
-            css.jander.specific
-        ], ['css-specific']);
-
-    g.watch([
-            css.foundation.settings,
-            css.jander.common
-        ], ['css-common']);
-
-    g.watch([css.foundation.settings], ['css-foundation']);
+    g.watch(css.inputFolder + '/*.scss', ['css']);
 });
 
 
 // Default Task
 // ============
 
-g.task('default', ['js', 'css']);
+g.task('default', ['css']);

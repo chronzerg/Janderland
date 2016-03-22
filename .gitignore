@@ -29,6 +29,5 @@ public
 db.json
 
 # Generated Files
-js/lib
+js
 css
-_generated
