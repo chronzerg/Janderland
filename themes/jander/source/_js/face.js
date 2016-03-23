@@ -1,7 +1,5 @@
-// Menu
-// ====
-
-(function () {
+define(['jquery'], function ($) {
+	
 	// Configuration
 	// =============
 
@@ -31,32 +29,32 @@
 		}
 	};
 
-		// The range of time between displaying
-		// alt images.
+	// The range of time between displaying
+	// alt images.
 	var cooldownMin = 2000,
-		cooldownMax = 5000,
+		cooldownMax = 5000;
 
-		// The range of time an alt image is displayed.
-		displayMin = 500,
+	// The range of time an alt image is displayed.
+	var displayMin = 500,
 		displayMax = 2000;
 
 
-	// Functions
-	// =========
+	// Helpers
+	// =======
 
 	// Returns a random number generator.
-	var createNumGen = function (min, max) {
+	function createNumGen (min, max) {
 		return function () {
 			return min + ((max - min) * Math.random());
 		};
-	};
+	}
 
-	var swapImage = function (new_pic_path) {
+	function swapImage (new_pic_path) {
 		$('#face').attr('src', new_pic_path);
-	};
+	}
 
 	// Starts the loop that displays the alternative images.
-	var startLoop = function () {
+	function startLoop () {
 		cooldownTimerId = setTimeout(function loop () {
 			var cool_time = getCooldown(),
 				disp_time = getDisplay(),
@@ -76,7 +74,7 @@
 	};
 
 	// Stop the loop that displays the alternative images.
-	var stopLoop = function () {
+	function stopLoop () {
 		clearTimeout(displayTimerId);
 		clearTimeout(cooldownTimerId);
 	};
@@ -131,4 +129,4 @@
 			.unbind('mouseenter mouseleave click');
 		});
 	});
-})();
+});

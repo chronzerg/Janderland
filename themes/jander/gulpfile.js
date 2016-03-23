@@ -1,18 +1,37 @@
 var g = require('gulp'),
-    $ = require('gulp-load-plugins')(),
-    bowerFiles = require('main-bower-files');
+    $ = require('gulp-load-plugins')();
 
 
 // Configuration
 // =============
 
 var js = {
-    libaries: bowerFiles(/.*\.js/)
+    input: 'source/_js',
+    config: {
+        name: 'app',
+        baseUrl: 'source/_js',
+        include: ['requireLib'],
+        insertRequire: ['app'],
+        paths: {
+            requireLib: '../../bower_components/requirejs/require',
+            underscore: '../../bower_components/underscore/underscore',
+            foundation: '../../bower_components/foundation-sites/dist/foundation',
+            jquery:     '../../bower_components/jquery/dist/jquery',
+        },
+        shim: {
+            'underscore': {
+                exports: '_'
+            },
+            'foundation': {
+                deps: ['jquery']
+            }
+        }
+    },
+    output: 'source/js'
 };
 
 var css = {
-    inputFolder: 'source/_scss',
-    inputFile: 'app.scss',
+    input: 'source/_scss',
     includes: [
         'bower_components/foundation-sites/scss',
         'bower_components/foundation-icon-fonts'
@@ -21,11 +40,24 @@ var css = {
     output: 'source/css'
 };
 
+// JS Tasks
+// ========
+
+g.task('js-build', () => {
+    return g.src(js.input + '/app.js')
+        .pipe($.sourcemaps.init())
+        .pipe($.requirejsOptimize(js.config))
+        .pipe($.sourcemaps.write())
+        .pipe(g.dest(js.output));
+});
+
+g.task('js', ['js-build']);
+
 
 // CSS Tasks
 // ==========
 
-g.task('css-sass', () => {
+g.task('css-build', () => {
     var sass = $.sass({
         includePaths: css.includes 
     }).on('error', $.sass.logError);
@@ -34,7 +66,7 @@ g.task('css-sass', () => {
         browsers: ['last 2 versions', 'ie >= 9']
     });
 
-    return g.src(css.inputFolder + '/' + css.inputFile)
+    return g.src(css.input + '/app.scss')
         .pipe($.sourcemaps.init())
         .pipe(sass)
         .pipe(autoprefixer)
@@ -47,7 +79,7 @@ g.task('css-icons', () => {
         .pipe(g.dest(css.output));
 });
 
-g.task('css', ['css-sass', 'css-icons']);
+g.task('css', ['css-build', 'css-icons']);
 
 
 // Clean Tasks
@@ -57,18 +89,23 @@ g.task('clean-css', () => {
     return g.src(css.output).pipe($.clean());
 });
 
-g.task('clean', ['clean-css']);
+g.task('clean-js', () => {
+    return g.src(js.output).pipe($.clean());
+})
+
+g.task('clean', ['clean-css', 'clean-js']);
 
 
 // Watch Tasks
 // ===========
 
 g.task('watch', ['default'], () => {
-    g.watch(css.inputFolder + '/*.scss', ['css']);
+    g.watch(css.input + '/*.scss', ['css']);
+    g.watch(js.input + '/*.js', ['js']);
 });
 
 
 // Default Task
 // ============
 
-g.task('default', ['css']);
+g.task('default', ['css', 'js']);

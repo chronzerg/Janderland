@@ -1,13 +1,11 @@
-$(document).foundation();
-
-// Utilities
-// =========
-
-/*
-var remToPx = function (length) {
-    var html = document.getElementsByTagName('html')[0],
-        oneRemInPx = parseInt(window.getComputedStyle(html).fontSize);
-
-    return (parseInt(length) * oneRemInPx);
-};
-*/
+define([
+    'jquery',
+    'underscore',
+    'foundation',
+    'face'
+],
+function ($, _) {
+    $(function () {
+        $(document).foundation()
+    });
+});
