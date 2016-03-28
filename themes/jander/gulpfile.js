@@ -10,7 +10,10 @@ var js = {
     config: {
         name: 'app',
         baseUrl: 'source/_js',
-        include: ['requireLib'],
+        include: [
+            'face',
+            'utilities'
+        ],
         insertRequire: ['app'],
         paths: {
             requireLib: '../../bower_components/requirejs/require',

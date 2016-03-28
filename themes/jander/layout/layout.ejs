@@ -3,11 +3,28 @@
     <head>
         <%- css('css/app.css') %>
         <%- js('js/app.js') %>
-        <!--<script data-main="js/app" src="js/require.js"></script>-->
         <!-- TODO - User site variable -->
         <title>janderland</title>
     </head>
-    <body>
+
+    <%
+        var page = false;
+        if (is_home()) {
+            page = 'home';
+        }
+        else if (is_post()) {
+            page = 'post';
+        }
+        else if (is_tag()) {
+            page = 'tag';
+        }
+
+        var pageData = '';
+        if (page) {
+            pageData = 'data-page="'+page+'"'
+        }
+    %>
+    <body <%- pageData %>>
         <% if (!is_home()) { %>
 
         <!--
