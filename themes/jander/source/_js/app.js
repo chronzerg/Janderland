@@ -1,31 +1,13 @@
-define([
-    'jquery',
-    'underscore',
-    'foundation'
-],
-function ($, _) {
+// Javascript entry point.
 
-    // Global Initialize
-    // =================
+define(['loader', 'jquery', 'foundation'], function (loader, $) {
 
+    // Initialize Foundation
     $(function () {
         $(document).foundation();
     });
 
 
     // Load Page Modules
-    // =================
-
-    var pageModules = {
-        home: ['face']
-    };
-
-    $(function () {
-        var page = $('body').attr('data-page');
-        if (page && pageModules[page]) {
-            pageModules[page].forEach(function (module) {
-                require(module);
-            });
-        }
-    });
+    loader();
 });

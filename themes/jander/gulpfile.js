@@ -7,29 +7,6 @@ var g = require('gulp'),
 
 var js = {
     input: 'source/_js',
-    config: {
-        name: 'app',
-        baseUrl: 'source/_js',
-        include: [
-            'face',
-            'utilities'
-        ],
-        insertRequire: ['app'],
-        paths: {
-            requireLib: '../../bower_components/requirejs/require',
-            underscore: '../../bower_components/underscore/underscore',
-            foundation: '../../bower_components/foundation-sites/dist/foundation',
-            jquery:     '../../bower_components/jquery/dist/jquery',
-        },
-        shim: {
-            'underscore': {
-                exports: '_'
-            },
-            'foundation': {
-                deps: ['jquery']
-            }
-        }
-    },
     output: 'source/js'
 };
 
@@ -43,13 +20,47 @@ var css = {
     output: 'source/css'
 };
 
+var require = {
+    // Source folder
+    baseUrl: js.input,
+
+    // Entry point
+    name: 'app',
+    insertRequire: ['app'],
+
+    // Forced includes.
+    // All the page-specific modules should be included in this list because
+    // they aren't an explicit dependency of the entry point. They instead are
+    // loaded as needed by the 'loader' module. We also include the requireJS
+    // module so that we don't have to load it with another HTTP request.
+    include: [
+        'face',
+        'requireLib'
+    ],
+
+    // External modules which aren't located in the source folder.
+    paths: {
+        requireLib: '../../bower_components/requirejs/require',
+        jquery:     '../../bower_components/jquery/dist/jquery',
+        underscore: '../../bower_components/underscore/underscore',
+        foundation: '../../bower_components/foundation-sites/dist/foundation'
+    },
+
+    // Config for non-AMD modules.
+    shim: {
+        'underscore': {
+            exports: '_'
+        }
+    }
+}
+
 // JS Tasks
 // ========
 
 g.task('js-build', () => {
     return g.src(js.input + '/app.js')
         .pipe($.sourcemaps.init())
-        .pipe($.requirejsOptimize(js.config))
+        .pipe($.requirejsOptimize(require))
         .pipe($.sourcemaps.write())
         .pipe(g.dest(js.output));
 });
