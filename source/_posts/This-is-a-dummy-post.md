@@ -2,6 +2,8 @@
 title: This is a dummy post
 date: 2016-03-10 11:30:24
 tags:
+- write
+- test
 ---
 Dummies are the ones who make the most money. And dummies do what dummies do.
 <!-- more -->

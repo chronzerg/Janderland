@@ -2,6 +2,20 @@
 title: Test
 date: 2016-03-10 11:30:06
 tags:
+- write
+- test
+- one
+- two
+- three
+- hello
+- how
+- are
+- you
+- these
+- are
+- alot
+- of
+- tags
 ---
 It was a test at first, but then
 <!-- more -->

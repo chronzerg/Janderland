@@ -3,11 +3,14 @@
     <head>
         <%- css('css/app.css') %>
         <%- js('js/app.js') %>
-        <!-- TODO - User site variable -->
-        <title>janderland</title>
+        <title><%= config.title %></title>
     </head>
 
+    <!--
+     Generate data-page tag for body.
+    -->
     <%
+        // Get the page type.
         var page = false;
         if (is_home()) {
             page = 'home';
@@ -19,24 +22,26 @@
             page = 'tag';
         }
 
-        var pageData = '';
+        // Set the data-page attribute.
+        var dataPageTag = '';
         if (page) {
-            pageData = 'data-page="'+page+'"'
+            dataPageTag = 'data-page="'+page+'"'
         }
     %>
-    <body <%- pageData %>>
-        <% if (!is_home()) { %>
+
+    <body <%= dataPageTag %>>
 
         <!--
-         Top Bar
+         Default top-bar.
+         Not used on the home page.
         -->
+        <% if (!is_home()) { %>
         <div id="top-bar">
             <div class="top-bar-left">
                 <ul class="menu">
                     <li>
                         <a href="<%= url_for('') %>">
-                            <!-- TODO - Use site variable -->
-                            <h1 id="title">janderland</h1>
+                            <h1 id="top-bar-title"><%= config.title %></h1>
                         </a>
                     </li>
                     <li>
@@ -53,13 +58,13 @@
             <div class="top-bar-right">
                 <ul class="menu">
                     <li><input type="search" placeholder="search"></li>
-                    <li><button type="button" class="button">search</button></li>
+                    <li><button type="button" class="button"><i class="fi-magnifying-glass"></i></button></li>
                 </ul>
             </div>
         </div>
-
         <% } %>
 
         <%- body %>
+
     </body>
 </html>

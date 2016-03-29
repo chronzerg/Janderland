@@ -2,6 +2,8 @@
 title: What up punks
 date: 2016-03-10 11:30:17
 tags:
+- write
+- test
 ---
 Punk drunk!
 <!-- more -->

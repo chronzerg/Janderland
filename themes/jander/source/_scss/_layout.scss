@@ -1,5 +1,9 @@
 @import 'colors';
 
+
+// Top Bar
+// =======
+
 #top-bar {
     @extend .top-bar;
     margin-bottom: 10px;
@@ -9,7 +13,7 @@
     }
 }
 
-#title {
+#top-bar-title {
     color: $primary;
     font-weight: bold;
     font-size: 1.5em;
@@ -20,4 +24,32 @@
         text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
         font-size: 4rem;
     }
+}
+
+
+// Post Date
+// =========
+
+#date {
+    font-size: 0.75em;
+}
+
+
+// Post Tags
+// =========
+
+#tags { }
+
+.tags-tag {
+    float: left;
+    margin-right: 10px;
+}
+
+#tags-title {
+    @extend .tags-tag;
+    font-weight: bold;
+}
+
+#tags-end {
+    clear: both;
 }
