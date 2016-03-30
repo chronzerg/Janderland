@@ -40,24 +40,24 @@
             <div class="top-bar-left">
                 <ul class="menu">
                     <li>
-                        <a href="<%= url_for('') %>">
+                        <a href="<%- url_for('') %>">
                             <h1 id="top-bar-title"><%= config.title %></h1>
                         </a>
                     </li>
                     <li>
-                        <a href="<%= url_for('tags/write') %>"><i class="fi-pencil"></i></a>
+                        <a href="<%- url_for('tags/write') %>"><i class="fi-pencil"></i></a>
                     </li>
                     <li>
-                        <a href="<%= url_for('tags/play') %>"><i class="fi-music"></i></a></i></a>
+                        <a href="<%- url_for('tags/play') %>"><i class="fi-music"></i></a></i></a>
                     </li>
                     <li>
-                        <a href="<%= url_for('tags/code') %>"><i class="fi-laptop"></i></a></i></a>
+                        <a href="<%- url_for('tags/code') %>"><i class="fi-laptop"></i></a></i></a>
                     </li>
                 </ul>
             </div>
             <div class="top-bar-right">
                 <ul class="menu">
-                    <li><input type="search" placeholder="search"></li>
+                    <li><input type="search" placeholder="search all posts"></li>
                     <li><button type="button" class="button"><i class="fi-magnifying-glass"></i></button></li>
                 </ul>
             </div>

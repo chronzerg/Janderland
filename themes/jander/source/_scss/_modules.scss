@@ -16,3 +16,17 @@
         display: none;
     }
 }
+
+
+// DataTables
+// ==========
+
+.paginate_button {
+    @extend .button;
+}
+
+.dataTables_filter {
+    input[type="search"] {
+        
+    }
+}

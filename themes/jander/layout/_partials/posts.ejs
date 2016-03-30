@@ -20,7 +20,9 @@
     </tbody>
 </table>
 
+<% if (locals.tableConfig) { %>
 <script>
     // Apply custom datatable config to the posts table.
     $('table').last().data('tableConfig', <%- JSON.stringify(tableConfig) %>);
 </script>
+<% } %>

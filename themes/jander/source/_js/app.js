@@ -12,7 +12,19 @@ define(['loader', 'jquery', 'underscore', 'foundation', 'datatables'], function 
 
             tableConfig = _({
                 // Default post datatable config.
-                autoWidth: false
+                autoWidth: false,
+                lengthChange: false,
+                language: {
+                    search: '',
+                    searchPlaceholder: 'search',
+                    info: '_START_ to _END_ of _TOTAL_',
+                    paginate: {
+                        first: 'first',
+                        last: 'last',
+                        next: 'next',
+                        previous: 'prev'
+                    }
+                }
             }).extend(tableConfig);
 
             $(this).DataTable(tableConfig);
