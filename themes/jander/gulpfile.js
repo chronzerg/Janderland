@@ -14,7 +14,8 @@ var css = {
     input: 'source/_scss',
     includes: [
         'bower_components/foundation-sites/scss',
-        'bower_components/foundation-icon-fonts'
+        'bower_components/foundation-icon-fonts',
+        'bower_components/datatables/media/css'
     ],
     icons: 'bower_components/foundation-icon-fonts/foundation-icons.!(css)',
     output: 'source/css'
@@ -43,7 +44,8 @@ var require = {
         requireLib: '../../bower_components/requirejs/require',
         jquery:     '../../bower_components/jquery/dist/jquery',
         underscore: '../../bower_components/underscore/underscore',
-        foundation: '../../bower_components/foundation-sites/dist/foundation'
+        foundation: '../../bower_components/foundation-sites/dist/foundation',
+        datatables: '../../bower_components/datatables/media/js/jquery.dataTables'
     },
 
     // Config for non-AMD modules.

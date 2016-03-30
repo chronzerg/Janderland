@@ -26,13 +26,16 @@
 -->
 <div class="content">
     <div class="callout-header secondary">
-        <div class="row column">
-            New Stuff
-        </div>
+        New Stuff
     </div>
     <%-
         partial('_partials/posts', {
-            posts: site.posts.limit(theme.recent_posts)
+            posts: site.posts.limit(theme.recent_posts),
+            config: {
+                searching: false,
+                paging: false,
+                info: false
+            }
         })
     %>
 </div>

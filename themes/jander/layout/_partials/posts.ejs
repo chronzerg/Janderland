@@ -1,19 +1,26 @@
-<div class="callout">
-    <% posts.forEach(function (post, i) { %>
+<%
+    // Process posts into datatable data.
+    var data = [];
+    posts.forEach((post) => {
+        data.push([post.title, post.excerpt.replace(/\s*<[^>]+>\s*/, '')]);
+    });
 
-        <a href="<%- url_for(post.path) %>">
-            <div class="row">
-                <div class="column small-12 medium-5">
-                    <span class="a"><%- post.title %></span>
-                </div>
-                <div class="column small-12 medium-7">
-                    <%- post.excerpt %>
-                </div>
-            </div>
-        </a>
+    config = _(config).extend({
+        data: data
+    });
+%>
 
-        <% if (i < (posts.length-1)) { %>
-            <hr>
-        <% } %>
-    <% }) %>
-</div>
+<table class="posts">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </td>
+    </thead>
+</table>
+
+<script>
+    // Apply custom datatable config to the above
+    // table.
+    $('table').last().data('dt_config', <%- JSON.stringify(config) %>);
+</script>

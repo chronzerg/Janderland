@@ -1,3 +1,5 @@
+// Common utilities
+
 define(function () {
 
     function remToPx (length) {

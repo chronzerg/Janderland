@@ -21,3 +21,12 @@ a {
 article {
     padding: 10px 10%;
 }
+
+
+// Tables
+// ======
+
+table {
+    @extend .callout;
+    border-collapse: separate;
+}
