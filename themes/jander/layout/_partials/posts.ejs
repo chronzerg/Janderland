@@ -1,15 +1,3 @@
-<%
-    // Process posts into datatable data.
-    var data = [];
-    posts.forEach((post) => {
-        data.push([post.title, post.excerpt.replace(/\s*<[^>]+>\s*/, '')]);
-    });
-
-    config = _(config).extend({
-        data: data
-    });
-%>
-
 <table class="posts">
     <thead>
         <tr>
@@ -17,10 +5,22 @@
             <th></th>
         </td>
     </thead>
+    <tbody>
+        <% posts.forEach((post) => { %>
+        <tr>
+            <td>
+                <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+            </td>
+            <td>
+                <!-- Excerpt with HTML removed -->
+                <%= post.excerpt.replace(/\s*<[^>]+>\s*/g, '') %>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
 </table>
 
 <script>
-    // Apply custom datatable config to the above
-    // table.
-    $('table').last().data('dt_config', <%- JSON.stringify(config) %>);
+    // Apply custom datatable config to the posts table.
+    $('table').last().data('tableConfig', <%- JSON.stringify(tableConfig) %>);
 </script>

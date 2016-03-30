@@ -6,16 +6,16 @@ define(['loader', 'jquery', 'underscore', 'foundation', 'datatables'], function 
         // Initialize Foundation
         $(document).foundation();
 
-        // Initialize Post Datatables
-        $('.posts').each(function () {
-            var config = $(this).data('dt_config');
+        // Initialize Posts
+        $('table.posts').each(function () {
+            var tableConfig = $(this).data('tableConfig');
 
-            config = _({
+            tableConfig = _({
                 // Default post datatable config.
                 autoWidth: false
-            }).extend(config);
+            }).extend(tableConfig);
 
-            $(this).DataTable(config);
+            $(this).DataTable(tableConfig);
         });
 
         // Load Page Modules

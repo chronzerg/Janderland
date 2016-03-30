@@ -17,7 +17,7 @@
         </ul>
     </div>
     <div class="row column text-center">
-        <img class="align-top" id="face" src="assets/face/idle1.jpg">
+        <!--<img class="align-top" id="face" src="assets/face/idle1.jpg">-->
     </div>
 </div>
 
@@ -31,7 +31,7 @@
     <%-
         partial('_partials/posts', {
             posts: site.posts.limit(theme.recent_posts),
-            config: {
+            tableConfig: {
                 searching: false,
                 paging: false,
                 info: false
