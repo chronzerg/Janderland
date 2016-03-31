@@ -21,12 +21,28 @@
 // DataTables
 // ==========
 
+.dataTables_paginate {
+    @extend .button-group, .small;
+    float: right;
+}
+
 .paginate_button {
     @extend .button;
 }
 
 .dataTables_filter {
     input[type="search"] {
-        
+        font-size: 0.75rem;
+        height: auto;
+        width: 100%;
+
+        @include breakpoint(medium) {
+            width: 200px;
+            float: right;
+        }
     }
+}
+
+.dataTables_info {
+    float: left;
 }

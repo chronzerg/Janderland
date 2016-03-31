@@ -1,9 +1,5 @@
 @import 'colors';
 
-.radius {
-    border-radius: 0.7rem !important;
-}
-
 // Header Classes
 @each $size, $headers in $header-sizes {
     @include breakpoint($size) {
@@ -16,17 +12,5 @@
 }
 
 .a {
-    color: $primary !important;
-}
-
-.align-top {
-    vertical-align: top !important;
-}
-
-.align-bottom {
-    vertical-align: bottom !important;
-}
-
-.no-wrap {
-    white-space: nowrap !important;
+    @extend a;
 }
