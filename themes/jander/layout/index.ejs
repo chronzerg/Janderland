@@ -9,15 +9,17 @@
  Floating-Head Menu
 -->
 <div id="menu-wrapper">
-    <div class="row column text-center no-wrap">
-        <ul class="menu expanded">
-            <li><a class="h1" id="button1" href="<%- url_for('tags/write') %>"><i class="fi-pencil"></i></a></li>
-            <li><a class="h1" id="button2" href="<%- url_for('tags/play') %>"><i class="fi-music"></i></a></li>
-            <li><a class="h1" id="button3" href="<%- url_for('tags/code') %>"><i class="fi-laptop"></i></a></li>
-        </ul>
-    </div>
-    <div class="row column text-center">
-        <!--<img class="align-top" id="face" src="assets/face/idle1.jpg">-->
+    <ul class="menu expanded text-center">
+        <li><a class="h1" id="button1" href="<%- url_for('tags/write') %>"><i class="fi-pencil"></i></a></li>
+        <li><a class="h1" id="button2" href="<%- url_for('tags/play') %>"><i class="fi-music"></i></a></li>
+        <li><a class="h1" id="button3" href="<%- url_for('tags/code') %>"><i class="fi-laptop"></i></a></li>
+    </ul>
+    <div id="face-wrapper">
+        <img id="face" src="assets/face/idle1.jpg">
+        <div id="summary">
+            I am <span class="a">Jon Anderson</span>. Found amongst these virtual pages are my creations. Enjoy.
+        </div>
+        <div class="clear-both"></div>
     </div>
 </div>
 

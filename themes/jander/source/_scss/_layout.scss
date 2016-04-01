@@ -27,6 +27,49 @@
 }
 
 
+// Face Menu
+// =========
+
+$face-width: rem-calc(250px);
+$summary-width: rem-calc(200px);
+$summary-margin: rem-calc(25px);
+
+#face-wrapper {
+    text-align: center;
+
+    @include breakpoint(medium) {
+        position: relative;
+        left: 50%;
+
+        width: $face-width+$summary-width+$summary-margin;
+        margin-left: -($summary-width+$summary-margin+($face-width/2));
+    }
+}
+
+#face {
+    width: $face-width;
+
+    @include breakpoint(medium) {
+        float: right;
+    }
+}
+
+#summary {
+    @extend .callout;
+
+    width: 50%;
+    margin: $summary-margin auto;
+    border-radius: rem-calc(30px);
+    border-width: rem-calc(5px);
+
+    @include breakpoint(medium) {
+        width: $summary-width;
+        margin-right: $summary-margin;
+        float: right;
+    }
+}
+
+
 // Post Date
 // =========
 
