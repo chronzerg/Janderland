@@ -1,4 +1,5 @@
 @import 'settings';
 
 $primary:       map-get($foundation-palette, primary);
+$secondary:     map-get($foundation-palette, secondary);
 $primary-hover: scale-color($primary, $lightness: 90%);

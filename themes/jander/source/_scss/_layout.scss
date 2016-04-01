@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'settings';
 
 
 // Top Bar
@@ -30,9 +31,13 @@
 // Face Menu
 // =========
 
+#button1, #button2, #button3 {
+    font-size: rem-calc(map-get(map-get($header-sizes, medium), h1));
+}
+
 $face-width: rem-calc(250px);
-$summary-width: rem-calc(200px);
-$summary-margin: rem-calc(25px);
+$bubble-width: rem-calc(150px);
+$bubble-margin: rem-calc(30px);
 
 #face-wrapper {
     text-align: center;
@@ -41,8 +46,8 @@ $summary-margin: rem-calc(25px);
         position: relative;
         left: 50%;
 
-        width: $face-width+$summary-width+$summary-margin;
-        margin-left: -($summary-width+$summary-margin+($face-width/2));
+        width: $face-width+$bubble-width+$bubble-margin;
+        margin-left: -($bubble-width+$bubble-margin+($face-width/2));
     }
 }
 
@@ -54,18 +59,35 @@ $summary-margin: rem-calc(25px);
     }
 }
 
-#summary {
+#bubble {
     @extend .callout;
 
     width: 50%;
-    margin: $summary-margin auto;
-    border-radius: rem-calc(30px);
-    border-width: rem-calc(5px);
+    margin: $bubble-margin auto;
+    border-radius: 1rem;
+    border-width: rem-calc(3px);
+    padding: 0.3rem;
 
     @include breakpoint(medium) {
-        width: $summary-width;
-        margin-right: $summary-margin;
+        width: $bubble-width;
+        margin-right: $bubble-margin;
         float: right;
+    }
+}
+
+#bubble-arrow {
+    position: absolute;
+    top: rem-calc(-41px);
+    right: 50%;
+    transform: rotate(-90deg) translateY(25%);
+
+    color: rgba($black, 0.25);
+    font-size: 2rem;
+
+    @include breakpoint(medium) {
+        top: 65%;
+        right: rem-calc(-25px);
+        transform: none;
     }
 }
 
