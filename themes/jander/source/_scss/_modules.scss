@@ -32,8 +32,6 @@
 
 .dataTables_filter {
     input[type="search"] {
-        font-size: 0.75rem;
-        height: auto;
         width: 100%;
 
         @include breakpoint(medium) {

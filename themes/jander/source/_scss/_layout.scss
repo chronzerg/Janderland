@@ -7,10 +7,20 @@
 
 #top-bar {
     @extend .top-bar;
+
     margin-bottom: 10px;
+    text-align: center;
+
+    @include breakpoint(medium) {
+        text-align: unset;
+    }
 
     &.l-home {
         text-align: center;
+    }
+
+    ul {
+        display: inline-block;
     }
 }
 

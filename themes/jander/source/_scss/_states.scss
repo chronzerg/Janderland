@@ -1,16 +1,5 @@
 @import 'colors';
 
-// Header Classes
-@each $size, $headers in $header-sizes {
-    @include breakpoint($size) {
-        @each $header, $font-size in $headers {
-            .#{$header} {
-                font-size: rem-calc($font-size) !important;
-            }
-        }
-    }
-}
-
 .a {
     @extend a;
 }
