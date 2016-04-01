@@ -11,7 +11,8 @@ define(['loader', 'jquery', 'underscore', 'foundation', 'datatables'], function 
             var tableConfig = $(this).data('tableConfig');
 
             tableConfig = _({
-                // Default post datatable config.
+                // Default datatable config
+                info: false,
                 autoWidth: false,
                 lengthChange: false,
                 language: {

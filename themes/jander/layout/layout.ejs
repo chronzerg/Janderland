@@ -5,10 +5,6 @@
         <%- js('js/app.js') %>
         <title><%= config.title %></title>
     </head>
-
-    <!--
-     Generate data-page tag for body.
-    -->
     <%
         // Get the page type.
         var page = false;
@@ -28,12 +24,9 @@
             dataPageTag = 'data-page="'+page+'"'
         }
     %>
-
     <body <%- dataPageTag %>>
-
         <!--
-         Default top-bar.
-         Not used on the home page.
+         Default top-bar
         -->
         <% if (!is_home()) { %>
         <div id="top-bar">
@@ -56,15 +49,14 @@
                 </ul>
             </div>
             <div class="top-bar-right">
-                <ul class="menu">
+                <!--<ul class="menu">
                     <li><input type="search" placeholder="search all"></li>
                     <li><button type="button" class="button"><i class="fi-magnifying-glass"></i></button></li>
-                </ul>
+                </ul>-->
             </div>
         </div>
         <% } %>
-
+        
         <%- body %>
-
     </body>
 </html>
