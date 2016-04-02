@@ -1,5 +1,6 @@
 @import 'colors';
 @import 'settings';
+@import 'util/util';
 
 
 // Top Bar
@@ -7,7 +8,6 @@
 
 #top-bar {
     @extend .top-bar;
-
     margin-bottom: 10px;
     text-align: center;
 
@@ -17,10 +17,6 @@
 
     &.l-home {
         text-align: center;
-    }
-
-    ul {
-        display: inline-block;
     }
 }
 
@@ -37,17 +33,40 @@
     }
 }
 
+#top-bar-menu {
+    display: inline-block;
+}
+
+#top-bar-search {
+    display: inline-block;
+
+    li {
+        padding-top: 0;
+        padding-bottom: 0;
+
+        @include breakpoint(medium) {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    }
+
+    input {
+        font-weight: normal;
+    }
+}
+
 
 // Face Menu
 // =========
 
+$face-width:    rem-calc(250px);
+$bubble-width:  rem-calc(150px);
+$bubble-margin: rem-calc(30px);
+
 #button1, #button2, #button3 {
+    // The large-screen h1 font size
     font-size: rem-calc(map-get(map-get($header-sizes, medium), h1));
 }
-
-$face-width: rem-calc(250px);
-$bubble-width: rem-calc(150px);
-$bubble-margin: rem-calc(30px);
 
 #face-wrapper {
     text-align: center;
@@ -55,7 +74,6 @@ $bubble-margin: rem-calc(30px);
     @include breakpoint(medium) {
         position: relative;
         left: 50%;
-
         width: $face-width+$bubble-width+$bubble-margin;
         margin-left: -($bubble-width+$bubble-margin+($face-width/2));
     }
@@ -71,7 +89,6 @@ $bubble-margin: rem-calc(30px);
 
 #bubble {
     @extend .callout;
-
     width: 50%;
     margin: $bubble-margin auto;
     border-radius: 1rem;
@@ -90,8 +107,7 @@ $bubble-margin: rem-calc(30px);
     top: rem-calc(-41px);
     right: 50%;
     transform: rotate(-90deg) translateY(25%);
-
-    color: rgba($black, 0.25);
+    color: rgba($black, 0.25); // The callout border color
     font-size: 2rem;
 
     @include breakpoint(medium) {
@@ -99,32 +115,4 @@ $bubble-margin: rem-calc(30px);
         right: rem-calc(-25px);
         transform: none;
     }
-}
-
-
-// Post Date
-// =========
-
-#date {
-    font-size: 0.75em;
-}
-
-
-// Post Tags
-// =========
-
-#tags { }
-
-.tags-tag {
-    float: left;
-    margin-right: 10px;
-}
-
-#tags-title {
-    @extend .tags-tag;
-    font-weight: bold;
-}
-
-#tags-end {
-    clear: both;
 }

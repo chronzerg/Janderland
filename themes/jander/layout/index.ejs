@@ -5,29 +5,26 @@
     <h1 id="top-bar-title"><%= config.title %></h1>
     <ul class="menu" id="top-bar-search">
         <li><input type="search" placeholder="search all"></li>
-        <li><button type="button" class="button small"><i class="fi-magnifying-glass"></i></button></li>
     </ul>
 </div>
 
 <!--
  Floating-Head Menu
 -->
-<div id="menu-wrapper">
-    <ul class="menu expanded text-center">
-        <li><a id="button1" href="<%- url_for('tags/write') %>" title="write"><i class="fi-pencil"></i></a></li>
-        <li><a id="button2" href="<%- url_for('tags/play') %>" title="play"><i class="fi-music"></i></a></li>
-        <li><a id="button3" href="<%- url_for('tags/code') %>" title="code"><i class="fi-laptop"></i></a></li>
-    </ul>
-    <div id="face-wrapper">
-        <img id="face" src="assets/face/idle1.jpg">
-        <div id="bubble">
-            I'm <span class="a">Jon Anderson</span>. Found amongst these virtual pages are my creations of thought, sound, and code. #Enjoy.
-            <div id="bubble-arrow">
-                <i class="fi-play"></i>
-            </div>
+<ul class="menu expanded text-center">
+    <li><a id="button1" href="<%- url_for('tags/write') %>" title="write"><i class="fi-pencil"></i></a></li>
+    <li><a id="button2" href="<%- url_for('tags/play') %>" title="play"><i class="fi-music"></i></a></li>
+    <li><a id="button3" href="<%- url_for('tags/code') %>" title="code"><i class="fi-laptop"></i></a></li>
+</ul>
+<div id="face-wrapper">
+    <img id="face" src="assets/face/idle1.jpg">
+    <div id="bubble">
+        I'm <a TODO="get link for my bio">Jon Anderson</a>. Found amongst these virtual pages are my creations of thought, sound, and code. #Enjoy.
+        <div id="bubble-arrow">
+            <i class="fi-play"></i>
         </div>
-        <div class="clear-both"></div>
     </div>
+    <div class="clear-both"></div>
 </div>
 
 <!--

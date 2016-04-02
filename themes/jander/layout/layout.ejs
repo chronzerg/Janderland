@@ -25,13 +25,13 @@
         }
     %>
     <body <%- dataPageTag %>>
+        <% if (!is_home()) { %>
         <!--
          Default top-bar
         -->
-        <% if (!is_home()) { %>
         <div id="top-bar">
             <div class="top-bar-left">
-                <ul class="menu">
+                <ul class="menu" id="top-bar-menu">
                     <li>
                         <a href="<%- url_for('') %>">
                             <h1 id="top-bar-title"><%= config.title %></h1>
@@ -49,9 +49,10 @@
                 </ul>
             </div>
             <div class="top-bar-right">
-                <ul class="menu">
-                    <li><input type="search" placeholder="search all"></li>
-                    <li><button type="button" class="button small"><i class="fi-magnifying-glass"></i></button></li>
+                <ul class="menu" id="top-bar-search">
+                    <li class="menu-text">
+                        <input type="search" placeholder="search all">
+                    </li>
                 </ul>
             </div>
         </div>

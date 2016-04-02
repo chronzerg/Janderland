@@ -1,4 +1,13 @@
-@import 'colors';
+// Content
+// =======
+
+.content {
+    @extend article;
+}
+
+
+// Callout Header
+// ==============
 
 .callout-header {
     @extend .callout;
@@ -7,14 +16,23 @@
     border-bottom-width: 0;
 }
 
-.content {
-    @extend article;
-}
+
+// Posts
+// =====
 
 .posts {
     thead {
         display: none;
     }
+}
+
+
+// Tags
+// ====
+
+.tag {
+    float: left;
+    margin-right: 10px;
 }
 
 
@@ -32,6 +50,7 @@
 
 .dataTables_filter {
     input[type="search"] {
+        @extend .small;
         width: 100%;
 
         @include breakpoint(medium) {

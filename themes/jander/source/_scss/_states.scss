@@ -1,9 +1,7 @@
-@import 'colors';
-
-.a {
-    @extend a;
-}
-
 .clear-both {
     clear: both;
+}
+
+.small {
+    font-size: 0.75rem;
 }

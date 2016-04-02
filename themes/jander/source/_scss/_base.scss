@@ -1,20 +1,4 @@
-@import 'colors';
-@import 'settings';
 @import 'components/callout';
-
-// Anchored Div
-// ============
-
-a {
-    >div {
-        color: $body-font-color;
-
-        &:hover {
-            background-color: $primary-hover;
-            box-shadow: 0 0 0 0.5rem $primary-hover;
-        }
-    }
-}
 
 
 // Articles
@@ -41,12 +25,4 @@ tr {
     &:not(:first-child) >td {
         padding-top: 1rem;
     }
-}
-
-
-// Search Boxes
-// ============
-
-input[type="search"] {
-    font-size: 0.75rem;
 }
