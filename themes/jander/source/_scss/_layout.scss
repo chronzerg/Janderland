@@ -40,16 +40,6 @@
 #top-bar-search {
     display: inline-block;
 
-    li {
-        padding-top: 0;
-        padding-bottom: 0;
-
-        @include breakpoint(medium) {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-    }
-
     input {
         font-weight: normal;
     }
