@@ -1,11 +1,35 @@
-<div class="content">
-    <h1>
-        <%= page.tag %>
-        <i class="fi-price-tag subheader" title="tag"></i>
-    </h1>    
+<%
+    // Find the meta post for this tag, if there is one.
+    var metaPost;
+    site.posts.some(function (post) {
+        if (post.title == page.tag) {
+            metaPost = post;
+            return true;
+        }
+        return false;
+    });
+%>
+
+<article>
+    <header>
+        <h1>
+            <%= page.tag %>
+            <i class="fi-price-tag subheader" title="tag"></i>
+        </h1>
+        
+        <% if (metaPost) { %>
+        <hr>
+        <% } %>
+    </header>
+
+    <% if (metaPost) { %>
+    <%- metaPost.content %>
+    <hr>
+    <% } %>
+
     <%- 
         partial('_partials/posts', {
             posts: page.posts
         })
     %>
-</div>
+</article>
