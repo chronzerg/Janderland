@@ -2,9 +2,9 @@
 title: Bringing Me Nowhere
 date: 2016-04-08 11:33:08
 tags:
-- write
-- dream
+- word
 - deep
+- dream
 - mary
 ---
 

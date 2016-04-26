@@ -19,7 +19,7 @@ tag_dir: tags
 code_dir: downloads/code
 
 # Writing
-post_asset_folder: true
+post_asset_folder: false
 highlight:
   enable: true
   line_number: true
