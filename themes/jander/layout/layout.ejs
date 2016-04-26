@@ -4,6 +4,7 @@
         <%- css('css/app.css') %>
         <%- js('js/app.js') %>
         <title><%= config.title %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <%
         // Get the page type.
@@ -16,6 +17,9 @@
         }
         else if (is_tag()) {
             page = 'tag';
+        }
+        else if (path === 'search.html') {
+            page = 'search';
         }
 
         // Set the data-page attribute.

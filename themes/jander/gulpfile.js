@@ -36,6 +36,8 @@ var require = {
     // module so that we don't have to load it with another HTTP request.
     include: [
         'face',
+        'search',
+        'searchQuery',
         'requireLib'
     ],
 

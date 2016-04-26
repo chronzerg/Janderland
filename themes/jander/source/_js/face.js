@@ -71,13 +71,13 @@ define(['jquery'], function ($) {
 				cooldownTimerId = setTimeout(loop, cool_time);
 			}, disp_time);
 		}, getCooldown());
-	};
+	}
 
 	// Stop the loop that displays the alternative images.
 	function stopLoop () {
 		clearTimeout(displayTimerId);
 		clearTimeout(cooldownTimerId);
-	};
+	}
 
 
 	// Initialize
