@@ -1,6 +1,18 @@
+<% /*
+    USAGE
+    partial('_partials/posts', {
+        posts: site.posts.limit(theme.recent_posts),
+        tableConfig: {
+            // Data table configuration values
+            // go here.
+        }
+    })    
+*/ %>
+
 <table class="posts">
     <thead>
         <tr>
+            <th></th>
             <th></th>
             <th></th>
         </td>
@@ -8,6 +20,10 @@
     <tbody>
         <% posts.forEach((post) => { %>
         <tr>
+            <td>
+                <span class="posts-date"><%= moment(post.updated).format('MMM DD') %></span>
+                <span class="posts-date"><%= moment(post.updated).format('YYYY') %></span>
+            </td>
             <td>
                 <a href="<%- url_for(post.path) %>"><%= post.title %></a>
             </td>
@@ -23,6 +39,7 @@
 <% if (locals.tableConfig) { %>
 <script>
     // Apply custom datatable config to the posts table.
+    // TODO - Test if this works properly for multiple tables.
     $('table').last().data('tableConfig', <%- JSON.stringify(tableConfig) %>);
 </script>
 <% } %>
