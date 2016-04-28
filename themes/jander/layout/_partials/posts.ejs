@@ -15,6 +15,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th class="dataTables_hidden"></th>
         </td>
     </thead>
     <tbody>
@@ -30,6 +31,11 @@
             <td>
                 <!-- Excerpt with HTML removed -->
                 <%= post.excerpt.replace(/\s*<[^>]+>\s*/g, '') %>
+            </td>
+            <td>
+                <% post.tags.forEach((tag) => { %>
+                    <%= tag.name+' ' %>
+                <% }) %>
             </td>
         </tr>
         <% }) %>

@@ -29,7 +29,8 @@ define(['loader', 'jquery', 'underscore', 'foundation', 'datatables'], function 
                 }
             }).extend(tableConfig);
 
-            $(this).DataTable(tableConfig);
+            var dtable = $(this).DataTable(tableConfig);
+            dtable.column($(this).find('th.dataTables_hidden')).visible(false);
         });
 
         // Load Page Modules
