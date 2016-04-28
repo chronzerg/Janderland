@@ -18,11 +18,11 @@
         </td>
     </thead>
     <tbody>
-        <% posts.forEach((post) => { %>
+        <% posts.sort('date', -1).forEach((post) => { %>
         <tr>
             <td>
-                <div class="posts-date"><%= moment(post.updated).format('MMM DD') %></div>
-                <div class="posts-date"><%= moment(post.updated).format('YYYY') %></div>
+                <div class="posts-date"><%= moment(post.date).format('MMM DD') %></div>
+                <div class="posts-date"><%= moment(post.date).format('YYYY') %></div>
             </td>
             <td>
                 <a href="<%- url_for(post.path) %>"><%= post.title %></a>

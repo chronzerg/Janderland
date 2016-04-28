@@ -13,6 +13,7 @@ define(['loader', 'jquery', 'underscore', 'foundation', 'datatables'], function 
             tableConfig = _({
                 // Default datatable config
                 info: false,
+                ordering: false,
                 autoWidth: false,
                 lengthChange: false,
                 language: {
