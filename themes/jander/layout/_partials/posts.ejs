@@ -21,8 +21,8 @@
         <% posts.forEach((post) => { %>
         <tr>
             <td>
-                <span class="posts-date"><%= moment(post.updated).format('MMM DD') %></span>
-                <span class="posts-date"><%= moment(post.updated).format('YYYY') %></span>
+                <div class="posts-date"><%= moment(post.updated).format('MMM DD') %></div>
+                <div class="posts-date"><%= moment(post.updated).format('YYYY') %></div>
             </td>
             <td>
                 <a href="<%- url_for(post.path) %>"><%= post.title %></a>

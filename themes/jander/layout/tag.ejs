@@ -1,13 +1,5 @@
 <%
-    // Find the meta post for this tag, if there is one.
-    var metaPost;
-    site.posts.some(function (post) {
-        if (post.title == page.tag) {
-            metaPost = post;
-            return true;
-        }
-        return false;
-    });
+    var meta = site.metas[page.tag];
 %>
 
 <article>
@@ -17,13 +9,13 @@
             <i class="fi-price-tag subheader" title="tag"></i>
         </h1>
         
-        <% if (metaPost) { %>
+        <% if (meta) { %>
         <hr>
         <% } %>
     </header>
 
-    <% if (metaPost) { %>
-    <%- metaPost.content %>
+    <% if (meta) { %>
+    <%- meta %>
     <hr>
     <% } %>
 

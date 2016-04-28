@@ -11,6 +11,7 @@
     "hexo-generator-archive": "^0.1.4",
     "hexo-generator-index": "^0.2.0",
     "hexo-generator-tag": "^0.2.0",
+    "hexo-processor-metas": "git+https://github.com/chronzerg/Hexo-Processor-Metas.git",
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^0.2.10",
     "hexo-server": "^0.2.0"
