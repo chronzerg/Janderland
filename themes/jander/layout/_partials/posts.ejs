@@ -1,13 +1,16 @@
-<% /*
-    USAGE
-    partial('_partials/posts', {
-        posts: site.posts.limit(theme.recent_posts),
-        tableConfig: {
-            // Data table configuration values
-            // go here.
-        }
-    })    
-*/ %>
+<% 
+/*
+ * USAGE
+ * partial('_partials/posts', {
+ *     posts: site.posts.limit(theme.recent_posts),
+ *     tableConfig: {
+ *         // Data table configuration values
+ *         // go here.
+ *     }
+ * })
+ * 
+ */ 
+%>
 
 <table class="posts">
     <thead>
@@ -15,6 +18,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <% // This last column is used to add searchable data that isn't displayed. %>
             <th class="dataTables_hidden"></th>
         </td>
     </thead>
@@ -22,6 +26,7 @@
         <% posts.sort('date', -1).forEach((post) => { %>
         <tr>
             <td>
+                <% // Displayed date %>
                 <div class="posts-date"><%= moment(post.date).format('MMM DD') %></div>
                 <div class="posts-date"><%= moment(post.date).format('YYYY') %></div>
             </td>
@@ -29,13 +34,17 @@
                 <a href="<%- url_for(post.path) %>"><%= post.title %></a>
             </td>
             <td>
-                <!-- Excerpt with HTML removed -->
+                <% // Excerpt with HTML removed %>
                 <%= post.excerpt.replace(/\s*<[^>]+>\s*/g, '') %>
             </td>
             <td>
+                <% // Tags %>
                 <% post.tags.forEach((tag) => { %>
                     <%= tag.name+' ' %>
                 <% }) %>
+
+                <% // Full month name %>
+                <%= moment(post.date).format('MMMM') %>
             </td>
         </tr>
         <% }) %>
@@ -44,8 +53,10 @@
 
 <% if (locals.tableConfig) { %>
 <script>
-    // Apply custom datatable config to the posts table.
-    // TODO - Test if this works properly for multiple tables.
+    <% 
+        // Apply custom datatable config to the posts table.
+        // TODO - Test if this works properly for multiple tables.
+    %>
     $('table').last().data('tableConfig', <%- JSON.stringify(tableConfig) %>);
 </script>
 <% } %>
