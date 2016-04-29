@@ -17,6 +17,10 @@ define(['jquery'], function ($) {
 			{
 				path: 'assets/face/idle3.jpg',
 				weight: 1
+			},
+			{
+				path: 'assets/face/button5.jpg',
+				weight: 1
 			}
 		],
 
