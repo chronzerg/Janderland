@@ -1,0 +1,1 @@
+For better or worse, I sometimes write. Here you'll find all the overly-dramatic angst that I never grew out of. Hopefully it doesn't make me look too foolish. #Enjoy

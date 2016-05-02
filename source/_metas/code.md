@@ -1,0 +1,1 @@
+Programming provides me with a perfect balance between expression, innovation, and reason. I like it. Check out some of my creations. #Enjoy

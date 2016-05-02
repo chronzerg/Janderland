@@ -1,0 +1,1 @@
+Like many children, I took piano lesson as a child. Like many children, I hated it. Somewhere between now and then, these sounds are happening. #Enjoy
