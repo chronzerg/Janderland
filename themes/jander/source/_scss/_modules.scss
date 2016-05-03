@@ -18,9 +18,6 @@
     }
 }
 
-// .posts-date and .posts-date-part provide a mechanism for
-// moving the year part of the date to a newline when the 
-// screen gets small enough.
 .posts-date {
     @extend .small;
     display: block;
