@@ -13,16 +13,47 @@
 // =====
 
 .posts {
-    thead {
-        display: none;
+    tbody:not(:last-child) {
+        .posts-date {
+            border-bottom: $callout-border;
+        }
+
+        .posts-excerptsmall {
+            border-bottom: $callout-border;
+        }
+
+        .posts-excerptlarge {
+            border-bottom: $callout-border;
+        }
+
+        @include breakpoint(medium) {
+            .posts-name {
+                border-bottom: $callout-border;
+            }
+        }
     }
 }
 
 .posts-date {
     @extend .small;
-    display: block;
     white-space: nowrap; 
     text-align: center;
+}
+
+.posts-excerptsmall {
+    display: table-cell;
+
+    @include breakpoint(medium) {
+        display: none;
+    }
+}
+
+.posts-excerptlarge {
+    display: none;
+
+    @include breakpoint(medium) {
+        display: table-cell;
+    }
 }
 
 

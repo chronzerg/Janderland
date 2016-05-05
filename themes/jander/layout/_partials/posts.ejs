@@ -13,42 +13,30 @@
 %>
 
 <table class="posts">
-    <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <% // This last column is used to add searchable data that isn't displayed. %>
-            <th class="dataTables_hidden"></th>
-        </td>
-    </thead>
+    <% posts.sort('date', -1).forEach((post) => { %>
     <tbody>
-        <% posts.sort('date', -1).forEach((post) => { %>
         <tr>
-            <td>
+            <td rowspan="2" class="posts-date">
                 <% // Displayed date %>
-                <div class="posts-date"><%= moment(post.date).format('MMM DD') %></div>
-                <div class="posts-date"><%= moment(post.date).format('YYYY') %></div>
+                <div><%= moment(post.date).format('MMM DD') %></div>
+                <div><%= moment(post.date).format('YYYY') %></div>
             </td>
-            <td>
+            <td class="posts-name">
                 <a href="<%- url_for(post.path) %>"><%= post.title %></a>
             </td>
-            <td>
+            <td class="posts-excerptlarge">
                 <% // Excerpt with HTML removed %>
                 <%= post.excerpt.replace(/\s*<[^>]+>\s*/g, '') %>
             </td>
-            <td>
-                <% // Tags %>
-                <% post.tags.forEach((tag) => { %>
-                    <%= tag.name+' ' %>
-                <% }) %>
-
-                <% // Full month name %>
-                <%= moment(post.date).format('MMMM') %>
+        </tr>
+        <tr>
+            <td class="posts-excerptsmall">
+                <% // Excerpt with HTML removed %>
+                <%= post.excerpt.replace(/\s*<[^>]+>\s*/g, '') %>
             </td>
         </tr>
-        <% }) %>
     </tbody>
+    <% }) %>
 </table>
 
 <% if (locals.tableConfig) { %>

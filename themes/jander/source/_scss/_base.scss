@@ -16,13 +16,3 @@ table {
     @extend .callout;
     border-collapse: separate;
 }
-
-tr {
-    &:not(:last-child) >td {
-        border-bottom: $callout-border;
-    }
-
-    &:not(:first-child) >td {
-        padding-top: 1rem;
-    }
-}
