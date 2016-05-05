@@ -32,12 +32,24 @@
             }
         }
     }
+
+    tbody:not(:first-child) {
+        .posts-date,
+        .posts-name,
+        .posts-excerptlarge {
+            padding-top: 1rem;
+        }
+    }
 }
 
 .posts-date {
     @extend .small;
     white-space: nowrap; 
     text-align: center;
+}
+
+.posts-name {
+    font-weight: bold;
 }
 
 .posts-excerptsmall {
