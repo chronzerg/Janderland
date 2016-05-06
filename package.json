@@ -2,11 +2,15 @@
   "name": "janderland",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "debug": "node-debug hexo"
+  },
   "hexo": {
     "version": "3.2.0"
   },
   "dependencies": {
     "hexo": "^3.2.0",
+    "hexo-beautify": "^1.0.2",
     "hexo-deployer-git": "^0.1.0",
     "hexo-generator-archive": "^0.1.4",
     "hexo-generator-index": "^0.2.0",
@@ -15,5 +19,9 @@
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^0.2.10",
     "hexo-server": "^0.2.0"
+  },
+  "devDependencies": {
+    "hexo-cli": "^1.0.1",
+    "node-inspector": "^0.12.8"
   }
 }

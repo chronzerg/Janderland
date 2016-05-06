@@ -5,7 +5,6 @@ title: janderland
 author: Jon Anderson
 
 # URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://jander.land
 root: /
 permalink: :title/
@@ -28,7 +27,6 @@ highlight:
 theme: jander
 
 # Deployment
-## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: https://github.com/chronzerg/chronzerg.github.io.git
