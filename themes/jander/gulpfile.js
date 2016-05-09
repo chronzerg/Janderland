@@ -1,5 +1,8 @@
 var g = require('gulp'),
-    $ = require('gulp-load-plugins')();
+    $ = require('gulp-load-plugins')(),
+    browserify = require('browserify'),
+    source = require('vinyl-source-stream'),
+    buffer = require('vinyl-buffer');
 
 
 // Configuration
@@ -13,59 +16,27 @@ var js = {
 var css = {
     input: 'source/_scss',
     includes: [
-        'bower_components/foundation-sites/scss',
-        'bower_components/foundation-icon-fonts',
-        'bower_components/datatables/media/css'
+        'node_modules/foundation-sites/scss',
+        'bower_components/foundation-icon-fonts'
     ],
     icons: 'bower_components/foundation-icon-fonts/foundation-icons.!(css)',
     output: 'source/css'
 };
 
-var require = {
-    // Source folder
-    baseUrl: js.input,
-
-    // Entry point
-    name: 'app',
-    insertRequire: ['app'],
-
-    // Forced includes.
-    // All the page-specific modules should be included in this list because
-    // they aren't an explicit dependency of the entry point. They instead are
-    // loaded as needed by the 'loader' module. We also include the requireJS
-    // module so that we don't have to load it with another HTTP request.
-    include: [
-        'face',
-        'search',
-        'searchQuery',
-        'requireLib'
-    ],
-
-    // External modules which aren't located in the source folder.
-    paths: {
-        requireLib: '../../bower_components/requirejs/require',
-        jquery:     '../../bower_components/jquery/dist/jquery',
-        underscore: '../../bower_components/underscore/underscore',
-        foundation: '../../bower_components/foundation-sites/dist/foundation',
-        datatables: '../../bower_components/datatables/media/js/jquery.dataTables'
-    },
-
-    // Config for non-AMD modules.
-    shim: {
-        'underscore': {
-            exports: '_'
-        }
-    }
-}
-
 // JS Tasks
 // ========
 
 g.task('js-build', () => {
-    return g.src(js.input + '/app.js')
-        .pipe($.sourcemaps.init())
-        .pipe($.requirejsOptimize(require))
-        .pipe($.sourcemaps.write())
+    var b = browserify(js.input + '/app.js', { debug: true });
+
+    return b.bundle()
+        .pipe(source('app.js'))
+        .pipe(buffer())
+        .pipe($.sourcemaps.init({ loadMaps: true }))
+        // Add transformation tasks to the pipeline here.
+        .pipe($.uglify())
+        .on('error', $.util.log)
+        .pipe($.sourcemaps.write('./'))
         .pipe(g.dest(js.output));
 });
 

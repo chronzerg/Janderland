@@ -2,11 +2,6 @@
   "name": "jander",
   "private": true,
   "dependencies": {
-    "foundation-sites": "^6.2.0",
-    "jquery": "^2.2.1",
-    "foundation-icon-fonts": "*",
-    "underscore": "^1.8.3",
-    "requirejs": "^2.2.0",
-    "datatables": "^1.10.11"
+    "foundation-icon-fonts": "*"
   }
 }

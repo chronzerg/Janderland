@@ -1,22 +1,23 @@
 // Loads page specific javascript.
 
-define(['jquery'], function ($) {
+var $ = require('jquery');
 
-    // Each page's modules.
-    var pageModules = {
-        home: ['face'],
-        search: ['search']
-    };
+// Each page's modules.
+var pageModules = {
+    home: ['./face'],
+    search: ['./search']
+};
 
-    return function () {
-        var page = $('body').attr('data-page');
-        if (page && pageModules[page]) {
-            // Load all the page's modules asynchronously.
-            require(pageModules[page]);
-        }
+module.exports = function () {
+    var page = $('body').attr('data-page');
+    if (page && pageModules[page]) {
+        // Load all the page's modules.
+        pageModules[page].forEach(function (module) {
+            require(module);
+        });
+    }
 
-        if (page !== 'search') {
-            require(['searchQuery']);
-        }
-    };
-});
+    if (page !== 'search') {
+        require(['searchQuery']);
+    }
+};

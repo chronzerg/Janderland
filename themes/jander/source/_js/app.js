@@ -1,17 +1,17 @@
-// Javascript entry point.
+var loader = require('./loader');
+var $ = require('jquery');
+var _ = require('lodash');
+require('foundation-sites');
 
-define(['loader', 'jquery', 'underscore', 'foundation', 'datatables'], function (loader, $, _) {
+$(function () {
+    // Initialize Foundation
+    $(document).foundation();
 
-    $(function () {
-        // Initialize Foundation
-        $(document).foundation();
-
-        // Initialize Posts
-        $('table.posts').each(function () {
-            // TODO
-        });
-
-        // Load Page Modules
-        loader();
+    // Initialize Posts
+    $('.posts').each(function () {
+        // TODO
     });
+
+    // Load Page Modules
+    loader();
 });

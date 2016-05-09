@@ -1,14 +1,15 @@
 // The setup the search box on all pages except the search page.
 
-define(['jquery', 'queryString'], function ($, q) {
-    $(function () {
-        $('#top-bar-search input').keypress(function (e) {
+var $ = require('jquery');
+var q = require('./queryString');
 
-            // If enter was pressed...
-            if (e.which !== 13) return;
+$(function () {
+    $('#top-bar-search input').keypress(function (e) {
 
-            var query = q.encode($(this).val());
-            window.location.href = '/search.html?'+query;
-        });
+        // If enter was pressed...
+        if (e.which !== 13) return;
+
+        var query = q.encode($(this).val());
+        window.location.href = '/search.html?'+query;
     });
 });
