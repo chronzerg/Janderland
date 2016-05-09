@@ -27,15 +27,14 @@ var css = {
 // ========
 
 g.task('js-build', () => {
-    var b = browserify(js.input + '/app.js', { debug: true });
+    var b = browserify({ debug: true });
+    b.add(js.input + '/app.js');
 
     return b.bundle()
         .pipe(source('app.js'))
         .pipe(buffer())
         .pipe($.sourcemaps.init({ loadMaps: true }))
-        // Add transformation tasks to the pipeline here.
-        .pipe($.uglify())
-        .on('error', $.util.log)
+        .pipe($.uglify()).on('error', $.util.log)
         .pipe($.sourcemaps.write('./'))
         .pipe(g.dest(js.output));
 });
