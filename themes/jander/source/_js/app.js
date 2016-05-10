@@ -1,13 +1,11 @@
-var loader = require('./loader');
 var $ = require('jquery');
-var _ = require('lodash');
 
 $(function () {
     // Initialize Posts
     $('.posts').each(function () {
-        // TODO
+        require('./dominate/dominate')($(this));
     });
 
     // Load Page Modules
-    loader();
+    require('./loader')();
 });

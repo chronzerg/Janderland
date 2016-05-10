@@ -34,7 +34,7 @@ g.task('js-build', () => {
         .pipe(source('app.js'))
         .pipe(buffer())
         .pipe($.sourcemaps.init({ loadMaps: true }))
-        .pipe($.uglify()).on('error', $.util.log)
+        //.pipe($.uglify()).on('error', $.util.log)
         .pipe($.sourcemaps.write('./'))
         .pipe(g.dest(js.output));
 });
@@ -89,7 +89,7 @@ g.task('clean', ['clean-css', 'clean-js']);
 
 g.task('watch', ['default'], () => {
     g.watch(css.input + '/*.scss', ['css']);
-    g.watch(js.input + '/*.js', ['js']);
+    g.watch(js.input + '/**/*.js', ['js']);
 });
 
 

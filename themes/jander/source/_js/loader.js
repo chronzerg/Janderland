@@ -1,7 +1,6 @@
 // Loads page specific javascript.
 
 var $ = require('jquery');
-var searchQuery = require('./searchQuery');
 
 // Each page's modules.
 var pageModules = {
@@ -19,6 +18,6 @@ module.exports = function () {
     }
 
     if (page !== 'search') {
-        searchQuery();
+        require('./searchQuery')();
     }
 };

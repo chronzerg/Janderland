@@ -12,29 +12,43 @@
  */ 
 %>
 
-<table class="posts">
-    <% posts.sort('date', -1).forEach((post) => { %>
-    <tbody>
-        <tr>
-            <td rowspan="2" class="posts-date">
-                <% // Displayed date %>
-                <div><%= moment(post.date).format('MMM DD') %></div>
-                <div><%= moment(post.date).format('YYYY') %></div>
-            </td>
-            <td class="posts-name">
-                <a href="<%- url_for(post.path) %>"><%= post.title %></a>
-            </td>
-            <td class="posts-excerptlarge">
-                <% // Excerpt with HTML removed %>
-                <%= post.excerpt.replace(/\s*<[^>]+>\s*/g, '') %>
-            </td>
-        </tr>
-        <tr>
-            <td class="posts-excerptsmall">
-                <% // Excerpt with HTML removed %>
-                <%= post.excerpt.replace(/\s*<[^>]+>\s*/g, '') %>
-            </td>
-        </tr>
-    </tbody>
-    <% }) %>
-</table>
+<%
+    var config = {
+        searching: true,
+        paging: true
+    };
+
+    config = _.defaults(locals.tableConfig, config);
+%>
+
+<div class="posts">
+    <% if (config.searching) { %>
+    <input type="text" class="posts-search" placeholder="search">
+    <% } %>
+    <table class="list">
+        <% posts.sort('date', -1).forEach((post) => { %>
+        <tbody>
+            <tr>
+                <td rowspan="2" class="posts-date data" data-value="<%= moment(post.date).format('MMMM DD YYYY') %>">
+                    <% // Displayed date %>
+                    <div><%= moment(post.date).format('MMM DD') %></div>
+                    <div><%= moment(post.date).format('YYYY') %></div>
+                </td>
+                <td class="posts-name data" data-value="<%= post.title %>">
+                    <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+                </td>
+                <td class="posts-excerptlarge data">
+                    <% // Excerpt with HTML removed %>
+                    <%= post.excerpt.replace(/\s*<[^>]+>\s*/g, '').replace(/\s+/g, ' ') %>
+                </td>
+            </tr>
+            <tr>
+                <td class="posts-excerptsmall">
+                    <% // Excerpt with HTML removed %>
+                    <%= post.excerpt.replace(/\s*<[^>]+>\s*/g, '') %>
+                </td>
+            </tr>
+        </tbody>
+        <% }) %>
+    </table>
+</div>

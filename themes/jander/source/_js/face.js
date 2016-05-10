@@ -118,20 +118,18 @@ module.exports = function () {
 	startLoop();
 
 	// Register mouse callbacks
-	$(function () {
+	$('#button1, #button2, #button3')
+	.hover(function () { // mouseover
+		stopLoop();
+		var id = $(this).attr('id');
+		swapImage(imagePaths.buttons[id]);
+	},
+	function () { // mouseoff
+		swapImage(imagePaths.main);
+		startLoop();
+	})
+	.click(function () {
 		$('#button1, #button2, #button3')
-		.hover(function () { // mouseover
-			stopLoop();
-			var id = $(this).attr('id');
-			swapImage(imagePaths.buttons[id]);
-		},
-		function () { // mouseoff
-			swapImage(imagePaths.main);
-			startLoop();
-		})
-		.click(function () {
-			$('#button1, #button2, #button3')
-			.unbind('mouseenter mouseleave click');
-		});
+		.unbind('mouseenter mouseleave click');
 	});
 };

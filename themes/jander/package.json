@@ -2,9 +2,10 @@
   "name": "jander",
   "private": true,
   "dependencies": {
+    "bower": "^1.7.9",
     "browserify": "^13.0.1",
-    "browserify-shim": "^3.8.12",
     "foundation-sites": "^6.2.1",
+    "fuse.js": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean": "^0.3.2",
@@ -15,7 +16,6 @@
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "jquery": "^2.2.3",
-    "lodash": "^4.12.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }

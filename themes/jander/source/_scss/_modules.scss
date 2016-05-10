@@ -42,6 +42,15 @@
     }
 }
 
+.posts-search {
+    width: 100%;
+
+    @include breakpoint(medium) {
+        width: auto;
+        float: right;
+    }
+}
+
 .posts-date {
     @extend .small;
     white-space: nowrap; 
@@ -49,7 +58,7 @@
 }
 
 .posts-name {
-    font-weight: bold;
+    // No styles
 }
 
 .posts-excerptsmall {
