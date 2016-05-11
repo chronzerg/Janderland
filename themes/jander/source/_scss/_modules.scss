@@ -51,6 +51,16 @@
     }
 }
 
+.posts-pages {
+    &, div {
+        float: right;
+    }
+}
+
+.posts-indexes {
+    
+}
+
 .posts-date {
     @extend .small;
     white-space: nowrap; 
