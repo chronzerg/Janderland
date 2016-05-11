@@ -36,12 +36,18 @@ function buildEntry ($item) {
     return entry.slice(0, -1);
 }
 
+function initEntry ($item) {
+    var entry = buildEntry($item);
+    $item.data(DE, entry);
+    return entry;
+}
+
 module.exports = function filterBuilder (context) {
     // TODO - Make this element configurable.
-    var $search = context.$parent.find('.posts-search');
+    var $control = context.$parent.find('.posts-search');
 
     function update ($items) {
-        var query = $search.val();
+        var query = $control.val();
         if (!query) {
             return $items;
         }
@@ -50,10 +56,7 @@ module.exports = function filterBuilder (context) {
 
         $items.each(function () {
             var entry = $(this).data(DE);
-            if (!entry) {
-                entry = buildEntry($(this));
-                $(this).data(DE, entry);
-            }
+            if (!entry) entry = initEntry($(this));
             data.push(entry);
         });
 
@@ -67,7 +70,7 @@ module.exports = function filterBuilder (context) {
 
     // When someone enters something into the search box,
     // update the results.
-    $search.keyup(function () {
+    $control.keyup(function () {
         var $filtered = update(context.prev.pull());
         context.next.push($filtered);
     });

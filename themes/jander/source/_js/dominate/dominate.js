@@ -86,6 +86,7 @@ module.exports = function ($parent) {
     };
 
     inst.addFilter(require('./dominate-search'));
+    inst.addFilter(require('./dominate-pages'));
 
     $parent.data('dominate', inst);
     return inst;
