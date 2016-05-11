@@ -58,10 +58,8 @@ module.exports = function ($parent) {
     // The last node in the filter chain.
     var lastNode = {
         push: function ($items) {
-            if ($items.length > 0) {
-                $children.hide();
-                $items.show();
-            }
+            $children.hide();
+            $items.show();
         }
     }
 
@@ -87,6 +85,8 @@ module.exports = function ($parent) {
 
     inst.addFilter(require('./dominate-search'));
     inst.addFilter(require('./dominate-pages'));
+
+    inst.filterChain[0].push($children);
 
     $parent.data('dominate', inst);
     return inst;
