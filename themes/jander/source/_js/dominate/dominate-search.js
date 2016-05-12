@@ -1,22 +1,19 @@
 var $ = require('jquery');
-var f = require('fuse.js');
+var _ = require('lodash');
+var Fuse = require('fuse.js');
 
 // Constants
 var DE = 'dominate-search-entry';
 
-// Options for Fuse.js
-var foptions = {
+var defaults = {
     shouldSort: false,
     threshold: 0.4,
     distance: 1000,
     tokenize: false
 };
 
-// This function builds the descriptor string for each entry
-// in the dominate instance. These strings are what this filter
-// searches over.
-function buildEntry ($item) {
-    var entry = '';
+function buildDescriptor ($item) {
+    var descriptor = '';
 
     // Get the name/value pairs from the children elements.
     $item.find('.data').each(function () {
@@ -27,53 +24,46 @@ function buildEntry ($item) {
         }
 
         if (value) {
-            entry += value + ' ';
+            descriptor += value + ' ';
         }
     });
 
     // The slice removes the trailing space which was added by
     // the above loop.
-    return entry.slice(0, -1);
+    return descriptor.slice(0, -1);
 }
 
-function initEntry ($item) {
-    var entry = buildEntry($item);
-    $item.data(DE, entry);
-    return entry;
+function getDescriptor ($item) {
+    var descriptor = $item.data(DE);
+    if (descriptor === undefined) {
+        descriptor = buildDescriptor($item);
+        $item.data(DE, descriptor);
+    }
+    return descriptor;
 }
 
-module.exports = function filterBuilder (context) {
-    // TODO - Make this element configurable.
-    var $control = context.$parent.find('.posts-search');
+module.exports = function Filter (update, options) {
+    _.defaults(options, defaults);
+    var $input = options.$input;
 
-    function update ($items) {
-        var query = $control.val();
+    $input.keyup(update);
+
+    return function ($items) {
+        var query = $input.val().trim();
         if (!query) {
             return $items;
         }
 
-        var data = [];
-
+        var descriptors = [];
         $items.each(function () {
-            var entry = $(this).data(DE);
-            if (!entry) entry = initEntry($(this));
-            data.push(entry);
+            descriptors.push(getDescriptor($(this)));
         });
 
         var $filtered = $();
-        var s = new f(data, foptions);
-        s.search(query).forEach(function (i) {
+        var f = new Fuse(descriptors, options);
+        f.search(query).forEach(function (i) {
             $filtered = $filtered.add($items[i]);
         });
         return $filtered;
-    }
-
-    // When someone enters something into the search box,
-    // update the results.
-    $control.keyup(function () {
-        var $filtered = update(context.prev.pull());
-        context.next.push($filtered);
-    });
-
-    return update;
+    };
 };

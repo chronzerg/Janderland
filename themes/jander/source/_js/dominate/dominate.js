@@ -1,93 +1,101 @@
-module.exports = function ($parent) {
-    // Dominate only accepts a single parent object.
-    if ($parent.length !== 1) {
-        return;
-    }
+var $ = require('jquery');
 
-    // If there is already a dominate instance associated with this $parent,
-    // return that instance.
-    if ($parent.data('dominate')) {
-        return $parent.data('dominate');
-    }
+// Constants
+var DO = 'dominate';
 
-    var $children = $parent.find('.list').children();
-    if ($children.length === 0) {
-        $children = $parent.children();
-    }
-    if ($children.length === 0) {
-        return;
-    }
+// THE FILTER CHAIN - Dominate works by hooking up a chain of filters to
+// pass the DOM elements through. Each filter has the chance to remove
+// elements from the running list before passing the list on to the next
+// filter. After the elements have passed through all the filters, the
+// ones who made it through will be displayed.
 
-    // THE FILTER CHAIN - Dominate works by hooking up a chain of filters to
-    // pass the DOM elements through. Each filter has the chance to remove
-    // elements from the running list before passing the list on to the next
-    // filter. After the elements have passed through all the filters, the
-    // ones who made it through will be displayed.
+function NullNode () {
+    this.push = function () {};
+    this.pull = function () { return $(); };
+    this.next = this;
+    this.prev = this;
+}
 
-    // The first node in the filter chain.
-    var firstNode = {
-        pull: function () {
-            return $children;
+function ChainNode (Filter, options) {
+    var self = this;
+    var $filtered;
+    var filter;
+
+    this.next = new NullNode();
+    this.prev = new NullNode();
+
+    this.push = function ($items) {
+        $filtered = filter($items);
+        this.next.push($filtered);
+    };
+
+    this.pull = function () {
+        return $filtered;
+    };
+
+    filter = new Filter(function update () {
+        var $items = self.prev.pull();
+        self.push($items);
+    }, options);
+}
+
+function FirstNode ($items) {
+    this.pull = function () {
+        return $items;
+    };
+}
+
+function LastNode ($root) {
+    this.push = function ($filtered) {
+        $root.children().detach();
+        $filtered.appendTo($root);
+    }
+}
+
+function Dominate ($root) {
+    var $items = $root.children()
+    filterChain = [];
+
+    var firstNode = new FirstNode($items);
+    var lastNode = new LastNode($root);
+
+    this.addFilter = function (Filter, options, updateNow) {
+        var node = new ChainNode(Filter, options);
+        node.next = lastNode;
+        
+        var i = filterChain.push(node) - 1;
+
+        if (i > 0) {
+            node.prev = filterChain[i-1];
+            filterChain[i-1].next = node;
         }
-    }
-
-    // This functions builds a filter chain node. A function which builds the
-    // filter must be passed in. Each filter chain node has a push and pull
-    // function. The push function is called by the previous node when its
-    // done processing the DOM element list. The pull function is called by
-    // the next node when it wants a cache of the results form the last time
-    // this filter ran.
-    function buildFilterChainNode (buildFilter) {
-        var $results;
-
-        var node = {
-            push: function ($items) {
-                $results = this.filter($items);
-                this.next.push($results);
-            },
-            pull: function () {
-                return $results;
-            },
-            $parent: $parent
-        };
-
-        node.filter = buildFilter(node);
-        return node;
-    }
-
-    // The last node in the filter chain.
-    var lastNode = {
-        push: function ($items) {
-            $children.hide();
-            $items.show();
+        else {
+            node.prev = firstNode;
         }
-    }
 
-    // The dominate instance
-    var inst = {
-        $parent: $parent,
-        filterChain: [],
-        addFilter: function (buildFilter) {
-            var node = buildFilterChainNode(buildFilter);
-            node.next = lastNode;
-            
-            var i = this.filterChain.push(node) - 1;
-
-            if (i > 0) {
-                node.prev = this.filterChain[i-1];
-                this.filterChain[i-1].next = node;
-            }
-            else {
-                node.prev = firstNode;
-            }
+        if (updateNow || updateNow === undefined) {
+            this.update();
         }
     };
 
-    inst.addFilter(require('./dominate-search'));
-    inst.addFilter(require('./dominate-pages'));
+    this.update = function () {
+        if (filterChain.length) {
+            filterChain[0].push($items);
+        }
+    };
+}
 
-    inst.filterChain[0].push($children);
+module.exports = function ($root) {
+    if ($root.length !== 1) {
+        return;
+    }
 
-    $parent.data('dominate', inst);
+    if ($root.data(DO)) {
+        return $root.data(DO);
+    }
+
+    var inst = new Dominate($root);
+    $root.data(DO, inst);
+
     return inst;
 };

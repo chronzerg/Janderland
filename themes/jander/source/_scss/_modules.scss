@@ -52,7 +52,12 @@
 }
 
 .posts-pages {
-    float: right;
+    width: 100%;
+    text-align: center;
+
+    @include breakpoint(medium) {
+        text-align: right;
+    }
 }
 
 .posts-indexes {

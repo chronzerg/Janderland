@@ -1,27 +1,27 @@
 var $ = require('jquery');
+var _ = require('lodash');
 
-// TODO - Make these configurable.
-var options = {
-    perPage: 2,
+var defaults = {
+    perPage: 10,
     indexes: 5
 };
 
-function updateIndexesUi (index, pages, $ui) {
+function updateIndexesUi (pageIndex, pages, indexes, $ui) {
     var $elements = $();
 
     if (pages > 0) {
-        var rangeStart = index - Math.floor(options.indexes / 2);
-        if ((rangeStart + options.indexes) >= pages) {
-            rangeStart = pages - options.indexes - 1;
+        var rangeStart = pageIndex - Math.floor(indexes / 2);
+        if ((rangeStart + indexes) >= pages) {
+            rangeStart = pages - indexes - 1;
         }
         if (rangeStart < 1) {
             rangeStart = 1;
         }
 
         var i = rangeStart;
-        while((i < (rangeStart + options.indexes)) && (i <= pages)) {
-            var $button = $('<button class="button small"></button>').html(i);
-            if (i !== index) {
+        while((i < (rangeStart + indexes)) && (i <= pages)) {
+            var $button = $('<button class="button"></button>').html(i);
+            if (i !== pageIndex) {
                 $button.addClass('hollow');
             }
             $elements = $elements.add($button);
@@ -30,7 +30,7 @@ function updateIndexesUi (index, pages, $ui) {
         }
     }
     else {
-        $elements = $('<button class="button small hollow">...</button>');
+        $elements = $('<button class="button hollow">...</button>');
     }
 
     $ui.empty();
@@ -50,16 +50,26 @@ function updateNextPrevUi (index, pages, $prev, $next) {
     }
 }
 
-module.exports = function filterBuild (context) {
-    // TODO - Make these elements configurable.
-    var $prev = context.$parent.find('.posts-prev');
-    var $next = context.$parent.find('.posts-next');
-    var $indexes = context.$parent.find('.posts-indexes');
+module.exports = function filterBuild (update, options) {
+    _.defaults(options, defaults);
 
     var pageIndex = 1;
 
-    function update ($items) {
-        // Cap the page index at it's max value.
+    options.$prev.click(function () {
+        if ($(this).hasClass('disabled')) return;
+
+        pageIndex--;
+        update();
+    });
+
+    options.$next.click(function () {
+        if ($(this).hasClass('disabled')) return;
+
+        pageIndex++;
+        update();
+    });
+
+    return function ($items) {
         var pages = Math.ceil($items.length / options.perPage);
 
         if (pages > 0) {
@@ -74,28 +84,8 @@ module.exports = function filterBuild (context) {
             $items = $();
         }
 
-        updateIndexesUi(pageIndex, pages, $indexes);
-        updateNextPrevUi(pageIndex, pages, $prev, $next);
+        updateIndexesUi(pageIndex, pages, options.indexes, options.$indexes);
+        updateNextPrevUi(pageIndex, pages, options.$prev, options.$next);
         return $items;
-    }
-
-    $prev.click(function () {
-        if ($(this).hasClass('disabled')) return;
-
-        pageIndex--;
-        var $filtered = update(context.prev.pull());
-        context.next.push($filtered);
-    });
-
-    $next.click(function () {
-        if ($(this).hasClass('disabled')) return;
-
-        pageIndex++;
-        var $filtered = update(context.prev.pull());
-        context.next.push($filtered);
-    });
-
-    // TODO - Click on indexes
-
-    return update;
+    };
 };
