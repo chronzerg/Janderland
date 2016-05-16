@@ -6,6 +6,8 @@ var defaults = {
     indexes: 5
 };
 
+var NAME = "pages";
+
 function updateIndexesUi (pageIndex, pages, indexes, $ui) {
     var $elements = $();
 
@@ -50,42 +52,52 @@ function updateNextPrevUi (index, pages, $prev, $next) {
     }
 }
 
-module.exports = function filterBuild (update, options) {
+exports.name = NAME;
+exports.Filter = function (update, options) {
     _.defaults(options, defaults);
 
     var pageIndex = 1;
 
-    options.$prev.click(function () {
-        if ($(this).hasClass('disabled')) return;
-
-        pageIndex--;
-        update();
-    });
-
-    options.$next.click(function () {
+    function next () {
         if ($(this).hasClass('disabled')) return;
 
         pageIndex++;
         update();
-    });
+    }
 
-    return function ($items) {
-        var pages = Math.ceil($items.length / options.perPage);
+    function prev () {
+        if ($(this).hasClass('disabled')) return;
 
-        if (pages > 0) {
-            if (pageIndex > pages) pageIndex = pages;
-            if (pageIndex < 1) pageIndex = 1;
+        pageIndex--;
+        update();
+    }
 
-            var rangeStart = (pageIndex-1)*options.perPage;
-            var end = pageIndex*options.perPage;
-            $items = $items.slice(rangeStart, end);
+    options.$next.click(next);
+    options.$prev.click(prev);
+
+    return {
+        process: function ($items) {
+            var pages = Math.ceil($items.length / options.perPage);
+
+            if (pages > 0) {
+                if (pageIndex > pages) pageIndex = pages;
+                if (pageIndex < 1) pageIndex = 1;
+
+                var rangeStart = (pageIndex-1)*options.perPage;
+                var end = pageIndex*options.perPage;
+                $items = $items.slice(rangeStart, end);
+            }
+            else {
+                $items = $();
+            }
+
+            updateIndexesUi(pageIndex, pages, options.indexes, options.$indexes);
+            updateNextPrevUi(pageIndex, pages, options.$prev, options.$next);
+            return $items;
+        },
+        api: {
+            prev: prev,
+            next: next
         }
-        else {
-            $items = $();
-        }
-
-        updateIndexesUi(pageIndex, pages, options.indexes, options.$indexes);
-        updateNextPrevUi(pageIndex, pages, options.$prev, options.$next);
-        return $items;
     };
 };

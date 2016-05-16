@@ -1,11 +1,13 @@
-// The setup the search box on all pages except the search page.
+// The setup the search box. This script should be run on all
+// pages save the search page.
 
 var $ = require('jquery');
 
+var enterKeyCode = 13;
+
 module.exports = function () {
     $('#top-bar-search input').keypress(function (e) {
-        // If enter was pressed...
-        if (e.which !== 13) return;
+        if (e.which !== enterKeyCode) return;
 
         var query = require('./codec').encode($(this).val());
         window.location.href = '/search.html?'+query;

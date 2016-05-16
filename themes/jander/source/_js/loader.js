@@ -2,7 +2,6 @@
 
 var $ = require('jquery');
 
-// Each page's modules.
 var pageModules = {
     home: [require('./face')],
     search: [require('./search')]
@@ -11,13 +10,12 @@ var pageModules = {
 module.exports = function () {
     var page = $('body').attr('data-page');
     if (page && pageModules[page]) {
-        // Load all the page's modules.
-        pageModules[page].forEach(function (module) {
-            module();
+        pageModules[page].forEach(function (initModule) {
+            initModule();
         });
     }
 
     if (page !== 'search') {
-        require('./searchQuery')();
+        require('./searchAll')();
     }
 };

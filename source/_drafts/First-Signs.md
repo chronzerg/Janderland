@@ -6,9 +6,9 @@ tags:
 date: 2016-05-02 19:25:52
 ---
 
-Jey walked into the break room, his coffee mug in hand. <!-- more --> The last minutes of a sun ray glowed through the room's tinted windows. This late in the day, the light's slow decay was almost noticable. He approached his locker and touched his hand against it's handle. Immediately recognizing his familiar skin, the locker softly clicked open. Inside was a bag of a couple pounds of whole Ethiopian coffee beans, several boxes of TV dinners, and a six pack of light beer. He grabbed the coffee and closed the locker door.
+Jey walked into the break room, his coffee mug in hand. <!-- more --> The last minutes the sun's rays glowed through the room's tinted windows. This late in the day, the light's slow decay was almost noticable. He approached his locker and touched his hand against it's handle. Immediately recognizing his familiar skin, the locker softly clicked open. Inside was a bag of coffee beans, several TV dinners, and a six pack of soda. He grabbed the coffee and closed the locker door.
 
-The coffee beans tinkled as he poured them into a grinder. This was the only sound in the room, save the light footsteps of the humanoid robot behind him. "May", he called out. The footsteps paused for a moment and a gentle feminin voice responded. "Yes Jey?"
+The coffee beans tinkled as he poured them into his grinder. This was the only sound in the room, save the light footsteps of the humanoid robot behind him. "May", he called out. The footsteps paused for a moment and a gentle feminin voice responded. "Yes Jey?"
 
 "May, did you realized our names rhyme?" Before she could answer, Jey started up the grinder. It buzzed with a moderate din. May turned her plastic body to face Jey, and patiently waited for the noise to stop. As the grinder slowed, she continued with her answer.
 

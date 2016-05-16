@@ -25,7 +25,7 @@ function ChainNode (Filter, options) {
     this.prev = new NullNode();
 
     this.push = function ($items) {
-        $filtered = filter($items);
+        $filtered = filter.process($items);
         this.next.push($filtered);
     };
 
@@ -37,6 +37,8 @@ function ChainNode (Filter, options) {
         var $items = self.prev.pull();
         self.push($items);
     }, options);
+
+    this.api = filter.api;
 }
 
 function FirstNode ($items) {
@@ -46,8 +48,9 @@ function FirstNode ($items) {
 }
 
 function LastNode ($root) {
+    var $items = $root.children();
     this.push = function ($filtered) {
-        $root.children().detach();
+        $items.detach();
         $filtered.appendTo($root);
     }
 }
@@ -59,8 +62,10 @@ function Dominate ($root) {
     var firstNode = new FirstNode($items);
     var lastNode = new LastNode($root);
 
-    this.addFilter = function (Filter, options, updateNow) {
-        var node = new ChainNode(Filter, options);
+    this.filterApis = {};
+
+    this.addFilter = function (filterModule, options, updateNow) {
+        var node = new ChainNode(filterModule.Filter, options);
         node.next = lastNode;
         
         var i = filterChain.push(node) - 1;
@@ -76,6 +81,9 @@ function Dominate ($root) {
         if (updateNow || updateNow === undefined) {
             this.update();
         }
+
+        this.filterApis[filterModule.name] = node.api;
+        return node.api;
     };
 
     this.update = function () {

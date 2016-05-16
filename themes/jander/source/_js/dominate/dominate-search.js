@@ -4,6 +4,7 @@ var Fuse = require('fuse.js');
 
 // Constants
 var DE = 'dominate-search-entry';
+var NAME = 'search';
 
 var defaults = {
     shouldSort: false,
@@ -42,28 +43,37 @@ function getDescriptor ($item) {
     return descriptor;
 }
 
-module.exports = function Filter (update, options) {
+exports.name = NAME;
+exports.Filter = function (update, options) {
     _.defaults(options, defaults);
     var $input = options.$input;
 
     $input.keyup(update);
 
-    return function ($items) {
-        var query = $input.val().trim();
-        if (!query) {
-            return $items;
+    return {
+        process: function ($items) {
+            var query = $input.val().trim();
+            if (!query) {
+                return $items;
+            }
+
+            var descriptors = [];
+            $items.each(function () {
+                descriptors.push(getDescriptor($(this)));
+            });
+
+            var $filtered = $();
+            var f = new Fuse(descriptors, options);
+            f.search(query).forEach(function (i) {
+                $filtered = $filtered.add($items[i]);
+            });
+            return $filtered;
+        },
+        api: {
+            search: function (query) {
+                $input.val(query);
+                update();
+            }
         }
-
-        var descriptors = [];
-        $items.each(function () {
-            descriptors.push(getDescriptor($(this)));
-        });
-
-        var $filtered = $();
-        var f = new Fuse(descriptors, options);
-        f.search(query).forEach(function (i) {
-            $filtered = $filtered.add($items[i]);
-        });
-        return $filtered;
     };
 };
