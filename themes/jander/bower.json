@@ -1,7 +1,0 @@
-{
-  "name": "jander",
-  "private": true,
-  "dependencies": {
-    "foundation-icon-fonts": "*"
-  }
-}

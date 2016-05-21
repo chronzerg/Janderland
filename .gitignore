@@ -16,7 +16,6 @@ build/Release
 
 # Dependency directory
 node_modules
-bower_components
 
 # Optional npm cache directory
 .npm
@@ -24,11 +23,8 @@ bower_components
 # Optional REPL history
 .node_repl_history
 
-# Hexo Build Files
+# Hexo
 public
 db.json
 .deploy_git
-
-# Generated Files
-js
-css
+themes
