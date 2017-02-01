@@ -6,7 +6,7 @@ tags:
 date: 2016-05-02 19:25:52
 ---
 
-Jey walked into the break room, his coffee mug in hand. <!-- more --> The last minutes the sun's rays glowed through the room's tinted windows. This late in the day, the light's slow decay was almost noticable. He approached his locker and touched his hand against it's handle. Immediately recognizing his familiar skin, the locker softly clicked open. Inside was a bag of coffee beans, several TV dinners, and a six pack of soda. He grabbed the coffee and closed the locker door.
+Jey walked into the break room, his coffee mug in hand. <!-- more --> Last minute sun rays glowed through the room's tinted windows. This late in the day, the light's slow decay was almost noticable. He approached his locker and touched his hand against it's handle. Immediately recognizing his familiar skin, the locker softly clicked open. Inside was a bag of coffee beans, several TV dinners, and a six pack of soda. He grabbed the coffee and closed the locker door.
 
 The coffee beans tinkled as he poured them into his grinder. This was the only sound in the room, save the light footsteps of the humanoid robot behind him. "May", he called out. The footsteps paused for a moment and a gentle feminin voice responded. "Yes Jey?"
 
@@ -14,11 +14,9 @@ The coffee beans tinkled as he poured them into his grinder. This was the only s
 
 "I suppose it hadn't occured to me" she said politely. She paused for a moment to await his response, but Jey was busy packing an espresso machine with his fresh grinds. As a moment passed without his awknowledgement, she turned back to moving about the room.
 
-The espresso machine fizzled as it dripped the coffee into Jey's mug. He watched it with eyes tired from a long days work. Early that morning he had been awoken by a desparate message from his supervisor. One of their major networking platforms had been continuously failing. Though restoration to an older, working version had taken place, the newer features on this platform were essential to one of the company's largest clients.
+The espresso machine fizzled as it dripped the coffee into Jey's mug. He watched it with eyes tired from a long days work. Regular hours could be demanding, but overtime was stretching Jey thin. He had been called in hours before sunrise to fix an important issue and was still searching for the remedy. As the sunlight continued to fade, he wondered how much longer the solution would elude him.
 
-Jey had been called in five times like this in the past month alone. By company policy, he wouldn't have to deal with another after hours fix for another six months. "What a relief" he thought.
-
-The familiar beep of a toaster oven caught his attention. "Are you making yourself some dinner May?" he said with a smile. She responded with the same playfulness in her voice. "Do you need to get some more sleep Jey?" Jey laughed under his breath and peeked over his shoulder at what the robot was doing.
+The beep of a toaster oven caught his attention. "Are you making yourself some dinner May?" he said plainly. It was a second or two before Mey responded. "I'm not hungry." Jey peeked over his shoulder at what the robot was doing.
 
 One by one, May was closing the ajar oven doors, left open by distracted employees after warming their lunches. There was a grace to her movements, but a silence that betrayed her to lifelessness. Our natural slow pulse of breath was replaced by a soft blue light on her upper back, gently dimming and then growing back to it's origin vibrance, over and over again.
 
